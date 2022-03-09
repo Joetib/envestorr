@@ -464,6 +464,9 @@ body *::-webkit-scrollbar-thumb {
 }
 
 @media screen and (max-width: 576px) {
+  body {
+    font-size: 1em;
+  }
   .text-lg {
     font-size: 1.2em;
   }
