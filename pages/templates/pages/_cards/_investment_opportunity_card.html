@@ -1,0 +1,23 @@
+<div class="item-card bg-white rounded p-2 pb-sm-1 pt-sm-3 px-sm-3   h-100 overflow-hidden">
+    <a href="{{ item.get_absolute_url }}">
+
+        <div class="item-card-image">
+            <img src="{{ item.picture.url }}">
+        </div>
+    </a>
+    <div class="item-card-description px-0">
+        <a href="{{ item.get_absolute_url }}">
+
+            <p class="item-card-name">{{ item.title }}</h5>
+                <p class="product-card-category">{{ product.category }}</p>
+                <p class="m-0 text-m">{{ item.get_description_text | truncatewords:10 }}</p>
+        </a>
+        {% with item.tags.all as tags %}
+        <div class=" {% if tags %}mt-3{% endif %}">
+            {% for tag in tags %}
+            <a href="{% url 'investment-opportunity-list' %}?tag={{ tag}}" class="{% if not forloop.counter0 == 0 %}border-left{% endif %} px-1 text-info">{{ tag }}</a>
+            {% endfor %}
+        </div>
+        {% endwith %}
+    </div>
+</div>
