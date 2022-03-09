@@ -60,7 +60,7 @@
                             
                             <p class="px-2 m-0 py-1 {% if not forloop.counter0 == 0 %}border-left {% endif %}">
 
-                                <a href="#"
+                                <a href="{% url 'investment-opportunity-list' %}?tag={{ tag}}" class="{% if not forloop.counter0 == 0 %}border-left{% endif %}"
                                     class="text-{% cycle 'success' 'primary' 'info' 'warning' %}">
                                     {{tag }}
                                 </a> 

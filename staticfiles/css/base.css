@@ -134,7 +134,7 @@ body {
   font-family: 'Ubuntu', sans-serif;
   font-size: 1.0em;
   color: var(--dark-color);
-  line-height: 2;
+  line-height: 1.6;
   font-weight: 400;
 }
 
@@ -185,7 +185,7 @@ textarea.form-control {
   box-shadow: 0 0 7px rgba(0, 0, 0, 0.09);
 }
 .item-card:hover {
-  background: var(--main-background) !important;
+  
   box-shadow:0 0 5px rgba(0, 0, 0, 0.09);
 }
 .item-card-image img {
