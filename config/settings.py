@@ -55,6 +55,7 @@ INSTALLED_APPS = [
     'taggit',
 
     # Local
+    "configuration",
     "accounts",
     "pages",
     "unicorn_messaging",
