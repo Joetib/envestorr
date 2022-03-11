@@ -6,6 +6,16 @@ from taggit.managers import TaggableManager
 from django.urls import reverse
 # Create your models here.
 
+class TeamMember(models.Model):
+    name = models.CharField(max_length=100)
+    picture = models.ImageField(upload_to="team_members/%Y/")
+    position = models.CharField(max_length=40)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        ordering = ("date_created",)
+
 class InvestmentOpportunity(models.Model):
     title = models.CharField(max_length=200)
     description = RichTextField()

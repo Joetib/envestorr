@@ -6,6 +6,7 @@ from ckeditor.fields import RichTextField
 class Configuration(models.Model):
     about_us = RichTextField()
     disclaimer = RichTextField()
+    terms_and_conditions = RichTextField()
 
     @classmethod
     def object() -> "Configuration":
