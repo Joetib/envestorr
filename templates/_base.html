@@ -41,6 +41,9 @@
             <li class="nav-item active">
               <a class="nav-link" href="{% url 'investment-opportunity-list' %}">Investment Opportunities <span class="sr-only">(current)</span></a>
             </li>
+            <li class="nav-item active">
+              <a class="nav-link" href="{% url 'about' %}">About Us<span class="sr-only">(current)</span></a>
+            </li>
             {% if request.user.is_superuser %}
             
             {% endif %}
@@ -121,9 +124,9 @@
       <div class="row py-4">
         <div class="col-6 col-md-4 py-3">
           <h6 class='font-weight-bold'>Important links.</h6>
-          <p class="m-0 py-1"><a href="#">Home</a></p>
+          <p class="m-0 py-1"><a href="{% url 'home'%}">Home</a></p>
           <p class="m-0 py-1"><a href="{% url 'investment-opportunity-list' %}">Investment Opportunities </a></p>
-          <p class="m-0 py-1"><a href="#">About Us</a></p>
+          <p class="m-0 py-1"><a href="{% url 'about' %}">About Us</a></p>
           <p class="m-0 py-1"><a href="#">Terms and Conditions</a></p>
         </div>
         <div class="col-6 col-md-4 py-3">

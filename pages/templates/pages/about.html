@@ -35,6 +35,35 @@
 
     </div>
 </section>
+
+
+<section class=" py-5 bg-light position-relative">
+    <div class="container " >
+
+        <h2 class="page-title mb-5  pl-3" >Meet the Team</h2>
+
+
+        <div class="row position-relative">
+            {% for person in team_members %}
+            <div class="col-6 col-md-4 col-lg-3 py-3 ">
+                <div class="team-card text-center">
+                    <div class="text-left">
+
+                        <img  src="{{ person.picture.url }}" class="img-default img-thumbnail rounded-circle" style="height: 150px; width: 150px;">
+                    </div>
+                    <div class="card-body px-0">
+                        <p class="font-weight-bold m-0">{{ person.name }}</p>
+                        <span class="font-light text-uppercase">{{ person.position }}</span>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+
+        </div>
+
+    </div>
+
+</section>
 <section class=" py-5">
     <div class="container" >
 

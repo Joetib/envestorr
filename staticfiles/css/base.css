@@ -452,6 +452,25 @@ body *::-webkit-scrollbar-thumb {
 .border-left-thick-red{
   border-left: 6px solid #dc3545;
 }
+.team-card {
+  position: relative;
+  z-index: 1;
+}
+.team-card::before {
+  content: "";
+  position: absolute;
+  background: white;
+  border-left: 2px solid #1880c0;
+  border-bottom: 3px solid var(--accent-color);
+  box-shadow: 0 2px 2px rgba(0, 0, 0, 0.09);
+  top: 75px;
+  min-height: 100px;
+  z-index: -1;
+  bottom: 0;
+  left: 0;
+  border-radius: 10px;
+  width: 100%;
+}
 
 @media screen and (max-width:992px) {
 
