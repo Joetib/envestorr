@@ -1,0 +1,58 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="header-section bg-main">
+
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-between">
+
+
+            <div class="content text-dark">
+                <h1 class="page-title m-0">About Us</h1>
+                <p class="lead m-0">Who we are and what we stand for...</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="page-content pb-5">
+    <div class="bg-light py-5  ">
+        <div class="container ">
+            {{ configuration.about_us | safe }}
+           
+        </div>
+
+
+    </div>
+</section>
+<section class=" py-5">
+    <div class="container" >
+
+        <h2 class="page-title mb-5  border-left border-danger border-lg pl-3" style="border-left-width: 6px !important;">Disclaimer</h2>
+
+
+        <div class="row position-relative">
+            <div class="col-md-8">
+                {{ configuration.disclaimer | safe }}
+            </div>
+            <div class="disclaimer-image-container col-md-4  " >
+                <img class="img img-default" src="{% static 'images/tac.png' %}">
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+{% endblock %}
