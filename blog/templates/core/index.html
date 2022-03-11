@@ -1,0 +1,95 @@
+{% extends '_base.html' %}
+{% load static %}
+
+
+{% block extra_header_class %}h-min-100vh{% endblock %}
+
+{% block banner %}
+<div class="jumbotron h-100 m-0 py-7 bg-dark shadow-none" style="background: transparent;">
+
+    <div class="container text-white bg-dark pt-5 h-100">
+        <div class="row h-100">
+            <div class=" col-md-6">
+                <div class="h-100 d-flex flex-column justify-content-center">
+
+                    <p data-aos="fade-right" class="lead">{{ config.banner_prefix_text }} </p>
+                    <h1 data-aos="fade-right" class="font-xxlarge font-weight-bold">{{ config.banner_title }}</h1>
+                    <p data-aos="fade-right" class="lead">{{ config.banner_subtitle }}
+                </div>
+            </div>
+            <div class="col-md-6 h-max-100">
+                <img data-aos="fade-up" class="img-secondary" src="{{ config.banner_image.url }}">
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock banner %}
+
+{% block content %}
+<div class="bg-light container-fluid py-5">
+    <div class="d-flex flex-column align-items-center mt-4 py-4">
+        <div  class="div special-title">
+            <h1 data-aos="fade-right"  class="display-3 font-weight-bold m-0">About ACES</h1>
+            <p data-aos="fade-up" class="fancy-underline"></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center mb-4 ">
+        <div data-aos="fade-up" class="" style="max-width: 650px;">
+            {{ config.get_about_text | truncatewords:50 }}
+        </div>
+    </div>
+</div>
+
+
+<div class="bg-white container-fluid py-5">
+    <div class="d-flex flex-column align-items-center py-4">
+        <div class="div special-title">
+            <h1 data-aos="fade-right" class="display-3 font-weight-bold m-0">Our Mission</h1>
+            <p data-aos="fade-up" class="fancy-underline"></p>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div data-aos="fade-up" class="" style="max-width: 650px;">
+            {{ config.get_mission_text | truncatewords:50}}
+        </div>
+    </div>
+</div>
+
+
+
+<div class="container-fluid py-5">
+    <div class="d-flex flex-column align-items-center py-4 mt-4">
+        <div class="div special-title">
+            <h1 data-aos="fade-right" class="display-3 font-weight-bold m-0">Our Executives</h1>
+            <p data-aos="fade-up" class="fancy-underline"></p>
+        </div>
+    </div>
+    <div class="container py-5">
+
+        <div class="row ">
+            {% for executive in executives %}
+            {% include '_partials/_executive_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% if upcoming_events %}
+<div class="container-fluid py-5">
+    <div class="d-flex flex-column align-items-center py-4 mt-4">
+        <div class="div special-title">
+            <h1 data-aos="fade-right" class="display-3 font-weight-bold m-0">Upcoming events</h1>
+            <p data-aos="fade-up" class="fancy-underline"></p>
+        </div>
+    </div>
+    <div class="container py-5">
+
+        <div class="row ">
+            {% for event in upcoming_events %}
+            {% include '_partials/_event_list_card.html' %}
+            {% endfor %}
+        </div>
+    </div>
+</div>
+{% endif %}
+{% endblock content %}

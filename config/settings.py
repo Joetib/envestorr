@@ -58,6 +58,7 @@ INSTALLED_APPS = [
     "configuration",
     "accounts",
     "pages",
+    "blog",
     "unicorn_messaging",
 ]
 

@@ -1,0 +1,81 @@
+{% extends '_base.html' %}
+
+{% load crispy_forms_tags %}
+
+{% block title %}Contact Us{% endblock title %}
+{% block description %}{{ config.location }}. Phone: {{ config.main_phone_number }}. 
+{{ config.about|truncatewords:60 }}{% endblock %}
+
+
+{% block content %}
+  
+    
+    <!-- ##### Contact Area Start ##### -->
+    <section class="contact-area mt-5 pt-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <div class="contact-content">
+                        <div class="row">
+                            <!-- Contact Information -->
+                            <div class="col-12 col-lg-5">
+                                <div class="contact-information wow fadeInUp" data-wow-delay="400ms">
+                                    <div class="section-heading text-left">
+                                        <span data-aos="fade-left">Reach Out.</span>
+                                        <h3 data-aos="fade-right">Contact Us</h3>
+                                        <p data-aos="fade-up" class="mt-5">{{ config.get_about_text|safe |truncatewords:60 }}</p>
+                                        <a href="{% url 'core:about' %}" class="btn btn-primary">Read More</a>
+                                    </div>
+
+                                    <!-- Contact Social Info -->
+                                    <div data-aos="zoom-in" class="contact-social-info d-flex mb-30">
+                                        <a class="p-2" style="font-size: 32px;" href="{{ config.whatsapp_link }}"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+                                        <a class="p-2" style="font-size: 32px;" href="{{ config.facebook_link }}"><i class="fab fa-facebook" aria-hidden="true"></i></a>
+                                        <a class="p-2" style="font-size: 32px;" href="{{ config.twitter_link }}"><i class="fab fa-twitter" aria-hidden="true"></i></a>
+                                        <a class="p-2" style="font-size: 32px;" href="{{ config.youtube_link }}"><i class="fab fa-youtube" aria-hidden="true"></i></a>
+                                    </div>
+
+                                    <!-- Single Contact Info -->
+                                    <div class="single-contact-info d-flex">
+                                        <div class="contact-icon mr-15">
+                                            <i class="icon-placeholder"></i>
+                                        </div>
+                                        <p>{{ config.location }}</p>
+                                    </div>
+
+                                    <!-- Single Contact Info -->
+                                    <div class="single-contact-info d-flex">
+                                        <div class="contact-icon mr-15">
+                                            <i class="icon-telephone-1"></i>
+                                        </div>
+                                        <p>Main: {{ config.main_phone_number }} <br> Office: {{ config.office_phone_number }}</p>
+                                    </div>
+
+                                    <!-- Single Contact Info -->
+                                    <div class="single-contact-info d-flex">
+                                        <div class="contact-icon mr-15">
+                                            <i class="icon-contract"></i>
+                                        </div>
+                                        <p>{{ config.email_address }}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Contact Form Area -->
+                            <div class="col-12 col-lg-7">
+                                <div class="contact-form-area wow fadeInUp" data-wow-delay="500ms">
+                                    <h3 data-aos="fade-left">Leave a message</h3>
+                                    <form action="." method="post">
+                                        {% csrf_token %}
+                                        {{ contact_form | crispy }}
+                                        <button class="btn btn-lg btn-primary mt-30" type="submit">Send</button>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- ##### Contact Area End ##### -->
+{% endblock %}
