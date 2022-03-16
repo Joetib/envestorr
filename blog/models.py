@@ -22,6 +22,9 @@ class ArticleCategory(models.Model):
     def __str__(self):
         return self.name
 
+    def get_absolute_url(self) -> str:
+        return reverse('blog:article-list') + f"?category={self.id}"
+
 class Article(models.Model):
     author = models.ForeignKey(User, related_name="articles", on_delete=models.CASCADE)
     
@@ -29,10 +32,11 @@ class Article(models.Model):
     sub_title = models.CharField(max_length=300)
     image = models.ImageField(upload_to='article-images/')
     content = RichTextField()
-    categories = models.ManyToManyField(ArticleCategory, related_name="articles", symmetrical=True)
+    categories = models.ManyToManyField(ArticleCategory, blank=True, symmetrical=True)
     is_draft = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified  = models.DateTimeField(auto_now=True)
+    
     class Meta:
         ordering = ('-date_created', )
         

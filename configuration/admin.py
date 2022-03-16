@@ -4,6 +4,9 @@ from django.utils.html import mark_safe
 
 from .models import Configuration
 
+admin.site.site_header = "Envestorr"
+admin.site.index_title = "Welcome to Envestorr Administration Panel"
+
 
 
 # Register your models here.

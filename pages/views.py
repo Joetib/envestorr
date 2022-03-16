@@ -23,7 +23,7 @@ class InvestmentListView(ListView):
     model = models.InvestmentOpportunity
     queryset = models.InvestmentOpportunity.objects.all()
     context_object_name = "investment_opportunities"
-    paginate_by = 24
+    paginate_by = 12
     template_name = "pages/investment_opportunity_list.html"
     search_query = ""
     tag = None

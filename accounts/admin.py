@@ -22,6 +22,7 @@ class CustomUserAdmin(UserAdmin):
             {
                 "fields": (
                     "phone_number",
+                    "picture",
                 )
             }
         )

@@ -108,7 +108,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-if DEBUG:
+if False:
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",

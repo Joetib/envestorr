@@ -7,32 +7,69 @@
 {% block description %}Best Read articles from us.{% endblock %}
 
 {% block content %}
-<div class="container pt-5 mt-5">
-    <div class="row">
-        <div class="col-12">
-            <div class="section-heading mb-0 text-center mx-auto wow fadeInUp" data-wow-delay="300ms">
-                <span>Best</span>
-                <h3>Articles</h3>
-                <div class="d-flex flex-row flex-wrap justify-content-center">
-                    {% for category in article_categories %}
-                    <a href="{{ category.get_absolute_url }}" class="btn {% if category == selected_category %}btn-warning{% else %}btn-light{% endif %} m-2">
-                        {{ category.name }}
-                    </a>
-                    {% endfor %}
-                </div>
-                <form class="py-4"  action=".">
+<section class="header-section bg-primary text-white">
 
-                    <input type="search" name="search"  placeholder="search..." class="text-center article-search-input w-100 " value="{{ search_term }}">
-                </form>
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-between">
+
+
+            <div class="content ">
+                <h1 class="page-title m-0">Articles</h1>
+                <p class="lead m-0 ">all the stories you need...</p>
             </div>
-
         </div>
     </div>
+</section>
+<section class="bg-white">
 
-    <div class="container pb-5">
+    <div class="container pt-3 ">
+        <div class="row">
+            <div class="col-12">
+                <div class="section-heading mb-0 text-centr mx=o wow row fadeInUp" data-wow-delay="300ms">
+                    <div class="col-md-6 py-2">
+                        <label>Categories : </label>
+                        <div class="d-flex flex-row flex-wrap justify-content-cener">
+                            {% for category in article_categories %}
+
+                            <a href="{{ category.get_absolute_url }}"
+                                class=" p-3 {% if category == selected_category %}bg-warning text-white{% else %}bg-white text-primary {% endif %} {% if forloop.counter0 != 0 %}border-left{% endif %}">
+                                {{ category.name }}
+                            </a>
+                            {% endfor %}
+                        </div>
+                    </div>
+
+                    <form id="search_form" class="col-md-6 py-2" action=".">
+                        <label for="search">Search</label>
+
+                        <input id="article-search" type="search" name="search" placeholder="search..."
+                            class="form-control form-control-lg py-4  w-100 " value="{{ search_term }}">
+                    </form>
+
+                </div>
+                <div class="col-md-12 py-4 px-0 ">
+
+                        <a class="btn btn-danger m-0" href="{% url 'blog:article-list' %}">Reset Filters</a>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+<section>
+
+
+    <div class="container py-5">
         <div class="row" id="article-row">
             {% for article in articles %}
-            {% include '_partials/_article_card.html' %}
+            <div
+                class="col-6 {% cycle 'pr-1' 'pl-1' %} px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
+                {% include '_partials/_article_card.html' %}
+            </div>
             {% empty %}
             <div class="col-12 p-3 text-center text-danger">
                 There are no articles available at this time.
@@ -42,13 +79,14 @@
 
         {% include '_partials/_pagination.html' %}
     </div>
-</div>
+</section>
+
 {% endblock content %}
 
 {% block extra_js %}
 <script>
     let vue_app = {
-        data (){
+        data() {
             return {
 
             }
