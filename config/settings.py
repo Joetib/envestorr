@@ -10,6 +10,7 @@ env = environ.Env(
     DEBUG=(bool, True),
     SECRET_KEY=(str, "'43)%4yx)aa@a=+_c(fn&kf3g29xax+=+a&key9i=!98zyim=8j'"),
     ALLOWED_HOSTS=(list, ["*"]),
+    USE_SQLITE=(bool, True),
     DB_PORT=(int, 3306),
     DB_HOST=(str, "localhost"),
     EMAIL_PORT=(int, 587),
@@ -108,7 +109,7 @@ TEMPLATES = [
 # ------------------------------------------------------------------------------
 # https://docs.djangoproject.com/en/dev/ref/settings/#databases
 
-if False:
+if env("USE_SQLITE"):
     DATABASES = {
         "default": {
             "ENGINE": "django.db.backends.sqlite3",
