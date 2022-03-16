@@ -2,20 +2,18 @@
     <a href="{{ article.get_absolute_url }}">
 
         <div class="item-card-image">
-            <img src="{{ article.image.url }}">
+            <img decoding="async" src="{{ article.image.url }}">
         </div>
     </a>
     <div class="item-card-description px-0">
         <a href="{{ article.get_absolute_url }}">
 
             <p class="item-card-name">{{ article.title }}</h5>
-                <p class="m-0 text-m">{{ article.sub_title }}</p>
+                <p class="m-0 text-md">{{ article.sub_title }}</p>
         </a>
-        {{ article.categories.all }}
         {% with article.categories.all as categories %}
-        {{ categories }}
         <div class=" {% if categories %}mt-3{% endif %}">
-            {% for category in categories %}aadf
+            {% for category in categories %}
             <a href="{{ cateory.get_absolute_url }}" class="{% if not forloop.counter0 == 0 %}border-left{% endif %} px-1 text-info">{{ category }}</a>
             {% endfor %}
         </div>

@@ -25,7 +25,7 @@
                     <div>
                         <div class="d-flex flex-row align-items-left py-3">
                             <div style="width: 60px; height: 60px;">
-                                <img width="60px" height="60px"
+                                <img decoding="async" width="60px" height="60px"
                                     src="{% if article.author.picture %}{{ article.author.picture.url }}{% else %}#{% endif %}"
                                     alt="" class="img-thumbnail img-fluid rounded-circle bg-light">
                             </div>
@@ -41,7 +41,7 @@
             <div class="col-lg-2"></div>
 
             <div
-                class="col-12 col-lg-2  col-xl-2 p-lg-0 d-flex flex-wrap flex-lg-column justify-content-between justify-content-lg-center align-items-center  align-items-lg-unset">
+                class="col-12 col-lg-2 pb-4  col-xl-2 p-lg-0 d-flex flex-wrap flex-lg-column justify-content-between justify-content-lg-center align-items-center  align-items-lg-unset">
 
                 <div>
                     <h5 class="mb-0">Categories</h5>
@@ -73,7 +73,7 @@
 
             <div class="col-12 col-lg-8 col-xl-8">
                 <div>
-                    <img class="img-responsive img-fluid" style="max-height: 50vh; width: 100%; object-fit: cover;"
+                    <img decoding="async" class="img-responsive img-fluid" style="max-height: 50vh; width: 100%; object-fit: cover;"
                         src="{{ article.image.url }}">
                 </div>
             </div>
@@ -95,7 +95,7 @@
 
             </div>
             <div class="col-12 col-lg-8 col-xl-8 markdown pt-5 pt-lg-3">
-                <div class="markdown">
+                <div class="markdown py-3">
                     {{ article.content | safe }}
                 </div>
 
