@@ -138,6 +138,40 @@ body {
   font-weight: 400;
 }
 
+#navbarSupportedContent.show{
+  display: block;
+  
+  width: 90%;
+  max-width: 400px;
+  height: 100%;
+  z-index: 100;
+  overflow: hidden;
+  box-shadow: 0 0 10px rgba(0,0,0,0.2);
+  animation: shownavbar 0.4s ease-in;
+}
+@keyframes shownavbar {
+  from {
+    left: -400px;
+  }
+  to {
+    left: 0;
+  }
+}
+#navbarSupportedContent {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 1;
+  background: white;
+  display: none;
+  flex-direction: column;
+}
+#navbarSupportedContent .navbarNav {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
 .pricing-header {
   max-width: 700px;
 }

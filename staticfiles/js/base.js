@@ -16,14 +16,23 @@ function construct_url(key, value, exclude) {
     return False;
 }
 (() => {
-    document.getElementById("search_form").addEventListener('submit', function(e){
-        e.preventDefault();
-        let input = document.getElementById("article-search");
-        construct_url(
-            "search",
-            input.value,
-            null
-        );
-    });
+    let sidebar = document.getElementById('navbarSupportedContent');
+    function toggleSidebar() {
+        sidebar.classList.toggle('show');
+    }
+    document.getElementById('sidebar-toggle').addEventListener('click', toggleSidebar);
 
-})();
+}
+)()
+    (() => {
+        document.getElementById("search_form").addEventListener('submit', function (e) {
+            e.preventDefault();
+            let input = document.getElementById("article-search");
+            construct_url(
+                "search",
+                input.value,
+                null
+            );
+        });
+
+    })();
