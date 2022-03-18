@@ -24,11 +24,13 @@
                     <h5 class="m-0 pl-2 text-italic  text-light-1">{{ article.sub_title }}</h5>
                     <div>
                         <div class="d-flex flex-row align-items-left py-3">
-                            <div style="width: 60px; height: 60px;">
-                                <img decoding="async" width="60px" height="60px"
-                                    src="{% if article.author.picture %}{{ article.author.picture.url }}{% else %}#{% endif %}"
-                                    alt="" class="img-thumbnail img-fluid rounded-circle bg-light">
-                            </div>
+                            <div style="width: 80px; height: 80px;">
+
+                                <img
+                                  src="{% if article.author.picture %}{{ article.author.picture.url }}{% else %}{% static 'images/user.png' %}{% endif %}"
+                                  alt="Author image" class="img-thumbnail img-fluid rounded-circle bg-light"
+                                  style="height: 100%; width: 100%; object-fit: cover;">
+                              </div>
 
                             <div class="pl-3">
                                 <h5 class="m-0 font-weight-bold  text-light-1">{{ article.author.username }} </h5>
