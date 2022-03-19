@@ -72,7 +72,7 @@
                     </div>
                 </div> -->
                 <div class="pt-lg-4">
-                    <a href="#" class="like_button" style="font-size: 25px;" data-target="#like_count-{{ article.id }}" data-url="{{ article.get_like_url }}">
+                    <a href="#" class="like_button {% if request.user in article.liked_by.all %}text-warning{% endif %}" style="font-size: 25px;" data-target="#like_count-{{ article.id }}" data-url="{{ article.get_like_url }}" data-liked="{% if request.user in article.liked_by.all %}1{% else %}0{% endif %}">
                         <i class="fa fa-thumbs-up"></i>
                         (<span  id="like_count-{{ article.id }}" style="font-size: 18px">{{ article.liked_by.count }}</span>)
                     </a>
