@@ -18,6 +18,9 @@ class AboutPageView(TemplateView):
         context['team_members'] = models.TeamMember.objects.all()
         return context
 
+class TermsAndConditionsView(TemplateView):
+    template_name = "pages/terms_and_conditions.html"
+
 
 class InvestmentListView(ListView):
     model = models.InvestmentOpportunity

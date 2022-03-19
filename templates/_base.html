@@ -65,6 +65,9 @@
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'about' %}">About Us<span class="sr-only">(current)</span></a>
                 </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'terms-and-conditions' %}">Terms and Conditions<span class="sr-only">(current)</span></a>
+                </li>
 
 
 
@@ -167,27 +170,20 @@
           <p class="m-0 py-1"><a href="{% url 'home'%}">Home</a></p>
           <p class="m-0 py-1"><a href="{% url 'investment-opportunity-list' %}">Investment Opportunities </a></p>
           <p class="m-0 py-1"><a href="{% url 'about' %}">About Us</a></p>
-          <p class="m-0 py-1"><a href="#">Terms and Conditions</a></p>
+          <p class="m-0 py-1"><a href="{% url 'terms-and-conditions' %}">Terms and Conditions</a></p>
         </div>
-        <div class="col-6 col-md-4 py-3">
-          <h6 class='font-weight-bold'>Categories</h6>
-          {% for category in all_categories %}
-          <p class="m-0 py-1"><a href="#">{{ category }}</a></p>
-
-          {% endfor %}
-
-        </div>
+        
         <div class="col-6 col-md-4 py-2">
           <h6 class='font-weight-bold'>Location</h6>
-          <p class="m-0 py-1">Kintampo</p>
-          <p class="m-0 py-1">Bono-East Region</p>
+          <p class="m-0 py-1">Kumasi</p>
+          <p class="m-0 py-1">Ashanti Region</p>
           <p class="m-0 py-1"><a href="tel:011111111">Call Us</a></p>
-          <p class="m-0 py-1 ">or <a href="mailto:admin@jotimall.com">Leave a mail</a></p>
+          <p class="m-0 py-1 ">or <a href="mailto:envestorr@envestorr.com">Leave a mail</a></p>
 
 
         </div>
       </div>
-      <p class="m-0 pt-3 pb-1 text-center">Designed by <a href="#" class="text-center">Joetib</a></p>
+      <p class="m-0 pt-3 pb-1 text-center">Built by <a href="#" class="text-center">Dequaye Web Solutions</a></p>
     </div>
   </footer>
 
