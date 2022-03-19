@@ -1,6 +1,8 @@
 from django.http import HttpRequest, QueryDict
 from django.db.models import Q
 from django.shortcuts import get_object_or_404
+
+from blog.models import Article
 from . import models
 from taggit.models import Tag
 from django.views.generic import TemplateView, ListView, DetailView
@@ -8,6 +10,12 @@ from django.views.generic import TemplateView, ListView, DetailView
 
 class HomePageView(TemplateView):
     template_name = "pages/home.html"
+
+    def get_context_data(self, **kwargs) :
+        context = super().get_context_data(**kwargs)
+        context['articles'] = Article.objects.all()[:6]
+        context['investment_opportunities'] = models.InvestmentOpportunity.objects.all()[:6]
+        return context
 
 
 class AboutPageView(TemplateView):

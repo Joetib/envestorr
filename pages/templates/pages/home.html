@@ -24,30 +24,76 @@
 
 
 
+<section class="page-content bg-main py-5">
+    <div class="container py-3">
+        <h2 class="page-title mb-5 border-left-thick-primary pl-3"
+            >Recent Articles</h2>
+        <div class="d-flex overflow-x-auto">
+            {% for article in articles %}
+            <div
+                class="col-6 {% cycle 'pr-1' 'pl-1' %} px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
 
+                {% include '_partials/_article_card.html' %}
+            </div>
+            {% empty %}
+            <div class="col-12 py-3 text-danger">
+                <p>Sorry no articles were found</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pt-3">
 
+            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'blog:article-list' %}"><i class="fa fa-arrow-right mr-3"></i> See more...</a>
+        </div>
+    </div>
+</section>
+
+<section class="page-content bg-light py-5">
+    <div class="container py-3">
+        <h2 class="page-title mb-5 border-left-thick-primary pl-3"
+            >Recent Investment Oppportunities</h2>
+        <div class="d-flex overflow-x-auto">
+            {% for item in investment_opportunities %}
+            <div
+                class="col-6 {% cycle 'pr-1' 'pl-1' %} px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
+
+                {% include 'pages/_cards/_investment_opportunity_card.html' %}
+            </div>
+            {% empty %}
+            <div class="col-12 py-3 text-danger">
+                <p>Sorry no articles were found</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pt-3">
+
+            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'investment-opportunity-list' %}"><i class="fa fa-arrow-right mr-3"></i> See more...</a>
+        </div>
+    </div>
+</section>
 
 <section class="page-content pb-5">
     <div class="bg-light py-5  ">
         <div class="container ">
             {{ configuration.about_us | safe }}
-           
+
         </div>
 
 
     </div>
 </section>
 <section class=" py-5">
-    <div class="container" >
+    <div class="container">
 
-        <h2 class="page-title mb-5  border-left border-danger border-lg pl-3" style="border-left-width: 6px !important;">Disclaimer</h2>
+        <h2 class="page-title mb-5  border-left border-danger border-lg pl-3"
+            style="border-left-width: 6px !important;">Disclaimer</h2>
 
 
         <div class="row position-relative">
             <div class="col-md-8">
                 {{ configuration.disclaimer | safe }}
             </div>
-            <div class="disclaimer-image-container col-md-4  " >
+            <div class="disclaimer-image-container col-md-4  ">
                 <img class="img img-default" src="{% static 'images/tac.png' %}">
             </div>
 

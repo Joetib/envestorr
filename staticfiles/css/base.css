@@ -23,7 +23,7 @@ html {
   --accent-color: #f79420;
   /* --main-background: #fafaff; */
   --main-background: #e7f8f7;
-  --secondary-background: #f9fffd;
+  --secondary-background: #e7f1ee;
   --white-color: white;
   --light-color: #aaa;
   --dark-color: #444;
@@ -58,7 +58,9 @@ body.dark-mode {
 .bg-main {
   background: var(--main-background) !important;
 }
-
+.bg-secondary {
+  background: var(--secondary-background) !important;
+}
 .bg-dark {
   background: var(--dark-color) !important;
 }
@@ -485,6 +487,13 @@ body *::-webkit-scrollbar-thumb {
 }
 .border-left-thick-red{
   border-left: 6px solid #dc3545;
+}
+.border-custom-primary {
+  border-color: var(--primary-color);
+}
+
+.border-left-thick-primary{
+  border-left: 6px solid var(--primary-color);
 }
 .team-card {
   position: relative;
