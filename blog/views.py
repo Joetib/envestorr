@@ -66,6 +66,21 @@ def article_vote(request: HttpRequest, pk) -> HttpResponse:
     })
 
 @login_required
+def like_or_unlike_article(request: HttpRequest, pk) -> HttpResponse:
+    unlike = bool(request.GET.get('unlike'))
+    article = get_object_or_404(models.Article, pk=pk)
+    if unlike:
+        article.remove_like(request.user)
+    else:
+        article.add_like(request.user)
+    return JsonResponse({
+        'success': True,
+        'liked': not unlike,
+        'likes_count': article.liked_by.count(),
+
+    })
+        
+@login_required
 def comment(request: HttpRequest, pk: int) -> HttpResponse:
     article = get_object_or_404(models.Article, pk=pk, is_draft=False)
     if not request.method == "POST":

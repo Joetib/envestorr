@@ -33,6 +33,7 @@ class Article(models.Model):
     image = models.ImageField(upload_to='article-images/')
     content = RichTextField()
     categories = models.ManyToManyField(ArticleCategory, blank=True, symmetrical=True)
+    liked_by = models.ManyToManyField(User, related_name="liked_articles", blank=True, symmetrical=True)
     is_draft = models.BooleanField(default=True)
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified  = models.DateTimeField(auto_now=True)
@@ -53,6 +54,15 @@ class Article(models.Model):
         return reverse('blog:article-vote', kwargs={'pk': self.pk})
     def evaluate_votes(self):
         return sum([vote.vote for vote in self.votes.all() ])
+    
+    def get_like_url(self) -> str:
+        return reverse('blog:article-like', kwargs={'pk': self.pk})
+        
+    def add_like(self, user: User):
+        self.liked_by.add(user)
+    
+    def remove_like(self, user: User):
+        self.liked_by.remove(user)
 
 class ArticleComment(models.Model):
     author = models.ForeignKey(User, on_delete=models.CASCADE, related_name="article_comments")

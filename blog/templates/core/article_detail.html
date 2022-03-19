@@ -55,7 +55,7 @@
                         {% endfor %}
                     </div>
                 </div>
-                <div>
+                <!-- <div>
 
                     <h5 class="mb-0 mt-lg-4">Votes</h5>
                     <hr>
@@ -70,6 +70,12 @@
                         <button v-else v-on:click="vote_down" class="btn btn-light glow"><i
                                 class="fas fa-angle-down"></i></button>
                     </div>
+                </div> -->
+                <div class="pt-lg-4">
+                    <a href="#" class="like_button" style="font-size: 25px;" data-target="#like_count-{{ article.id }}" data-url="{{ article.get_like_url }}">
+                        <i class="fa fa-thumbs-up"></i>
+                        (<span  id="like_count-{{ article.id }}" style="font-size: 18px">{{ article.liked_by.count }}</span>)
+                    </a>
                 </div>
 
             </div>
