@@ -40,9 +40,11 @@
 
 
                         <div class="content">
-                            <p class="nav-section-title m-0"><i class="fa fa-hand-point-right" aria-hidden="true"></i>
-                                Investment
-                                Opportunities</p>
+                            <a href="{% url 'investment_news:business-news-list' %}">
+                                <p class="nav-section-title m-0"><i class="fa fa-hand-point-right"
+                                        aria-hidden="true"></i>
+                                    Business News</p>
+                            </a>
                             <h1 class="page-title">{{ business_news.title }}</h1>
                         </div>
 
