@@ -59,6 +59,11 @@
                       class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'investment_news:business-news-list' %}">Business News <span
+                      class="sr-only">(current)</span></a>
+                </li>
+
+                <li class="nav-item active">
                   <a class="nav-link" href="{% url 'blog:article-list' %}">Blog <span
                       class="sr-only">(current)</span></a>
                 </li>
@@ -169,6 +174,7 @@
           <h6 class='font-weight-bold'>Important links.</h6>
           <p class="m-0 py-1"><a href="{% url 'home'%}">Home</a></p>
           <p class="m-0 py-1"><a href="{% url 'investment-opportunity-list' %}">Investment Opportunities </a></p>
+          <p class="m-0 py-1"><a href="{% url 'investment_news:business-news-list' %}">Business News </a></p>
           <p class="m-0 py-1"><a href="{% url 'about' %}">About Us</a></p>
           <p class="m-0 py-1"><a href="{% url 'terms-and-conditions' %}">Terms and Conditions</a></p>
         </div>

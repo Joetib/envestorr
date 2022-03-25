@@ -1,0 +1,18 @@
+<div class=" <!--d-flex flex-row flex-md-column-->item-card bg-white rounded p-2 pb-sm-1 pt-sm-3 px-sm-3   h-100 overflow-hidden">
+    <a href="{{ item.get_absolute_url }}">
+
+        <div class="item-card-image" >
+            <img decoding="async" style="height: 200px !important;" src="{{ item.url_to_image }}">
+        </div>
+    </a>
+    <div class="item-card-description px-0">
+        <a href="{{ item.get_absolute_url }}">
+
+            <p class="item-card-name">{{ item.title }}</h5>
+                <p class="m-0 text-m">{{ item.description }}</p>
+        </a>
+        <div class=" mt-3">
+            Source: <a href="#" class="{% if not forloop.counter0 == 0 %}border-left{% endif %} px-1 text-info">{{ item.source }}</a>
+        </div>
+    </div>
+</div>

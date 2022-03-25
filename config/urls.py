@@ -10,6 +10,7 @@ urlpatterns = [
     path('accounts/', include('allauth.urls')),
     path('', include('pages.urls')),
     path('blog/', include('blog.urls', namespace="blog")),
+    path('business-news/', include('investment_news.urls', namespace="investment_news")),
 ]
 
 if settings.DEBUG:

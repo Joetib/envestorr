@@ -60,6 +60,7 @@ INSTALLED_APPS = [
     "accounts",
     "pages",
     "blog",
+    'investment_news',
     "unicorn_messaging",
 ]
 
@@ -240,3 +241,4 @@ SMS_SENDER_ID = env("SMS_SENDER_ID")
 ENABLE_MESSAGING = env("ENABLE_MESSAGING")
 PAYSTACK_PRIVATE_KEY = env("PAYSTACK_SECRET_KEY")
 PAYSTACK_PUBLIC_KEY = env("PAYSTACK_PUBLIC_KEY")
+NEWS_API_KEY=env('NEWS_API_KEY')
