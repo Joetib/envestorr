@@ -11,13 +11,15 @@ API_KEY = settings.NEWS_API_KEY
 REGEX_TO_REMOVE_CHARS = '\[\+(.*?) chars\]'
 def fetch_business_news_from_news_api(date =None):
     if not date:
-        date = datetime.date.today()
+        date = datetime.date.today() - datetime.timedelta(days=1)
+        print(date)
     url = (f'https://newsapi.org/v2/top-headlines?'
     'sources=the-wall-street-journal,business-insider,business-insider-uk,fortune'
     f'&from={date.isoformat()}'
     '&sortBy=popularity'
     f'&apiKey={API_KEY}')
     response = requests.get(url)
+    
     return response.json()
 
 def put_business_news_results_in_database(results: Dict):
