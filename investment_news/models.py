@@ -9,8 +9,8 @@ class BusinessNews(models.Model):
     description = models.CharField(max_length=500)
     content = models.TextField()
     source = models.CharField(max_length=100)
-    url_to_image = models.URLField()
-    url = models.URLField()
+    url_to_image = models.URLField(max_length=300)
+    url = models.URLField(max_length=300)
     published_at =models.DateTimeField()
 
     class Meta:

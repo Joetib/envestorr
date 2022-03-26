@@ -139,6 +139,9 @@ body {
   line-height: 1.6;
   font-weight: 400;
 }
+.text-lg-sm {
+  font-size: 1em;
+}
 
 #navbarSupportedContent.show{
   display: block;
@@ -549,11 +552,11 @@ body *::-webkit-scrollbar-thumb {
   }
   
   .text-md {
-    font-size: 0.9em;
+    font-size: 1em;
   }
   
   .text-sm {
-    font-size: 0.7rem;
+    font-size: 0.9em;
   }
   
 
