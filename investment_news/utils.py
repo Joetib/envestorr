@@ -4,6 +4,7 @@ import re
 from typing import Dict, List
 from .models import BusinessNews
 import requests
+from django.db.utils import DataError
 from django.conf import settings
 from blog.templatetags.markdown import markdown_to_text
 API_KEY = settings.NEWS_API_KEY
@@ -33,16 +34,20 @@ def put_business_news_results_in_database(results: Dict):
             author = article['author']
         else:
             author = ""
-        news = BusinessNews.objects.get_or_create(
-            author = article['author'] if article['author'] else "",
-            title = article['title'],
-            source = article['source']['name'] if article['source'] else "",
-            description = markdown_to_text(article['description']),
-            content =re.sub(REGEX_TO_REMOVE_CHARS, "", markdown_to_text(article['content']) if article['content'] else ""),
-            url = article['url'],
-            url_to_image = article['urlToImage'] ,
-            published_at = article['publishedAt'],
-        )[0]
+        try:
+            news = BusinessNews.objects.get_or_create(
+                author = article['author'] if article['author'] else "",
+                title = article['title'],
+                source = article['source']['name'] if article['source'] else "",
+                description = markdown_to_text(article['description']),
+                content =re.sub(REGEX_TO_REMOVE_CHARS, "", markdown_to_text(article['content']) if article['content'] else ""),
+                url = article['url'],
+                url_to_image = article['urlToImage'] ,
+                published_at = article['publishedAt'],
+            )[0]
+        except DataError:
+            # skip the said article if the url is to long.
+            pass
         
 
 def run():
