@@ -25,26 +25,16 @@
 
 <section>
     <div class="bg-white py-3  ">
-        <div class="container ">
+        <div class="container " style="max-width: 650px;">
 
-            <form class="fom px-0   d-flex flex-row">
-                <div class="form-group  ">
-                    <label for="tag-select">Tags:</label>
-                    <select id="tag-select" {% if tag %}value="{{ selected_tag.name }}" {% endif %} name="tag"
-                        class="form-control w-100 rounded-0 form-control-lg">
-
-                        <option value=""></option>
-                        {% for tag in tags %}
-                        <option {% if tag == selected_tag %}selected{% endif %} value="{{ tag }}">{{ tag }}</option>
-                        {% endfor %}
-                    </select>
-                </div>
-                <div class="form-group  ">
+            <form class="fom px-0   d-flex flex-row justify-content-center">
+                
+                <div class="form-group  w-100">
                     <label for="search-input">Search:</label>
                     <div class="d-flex flex-row">
 
                         <input class="form-control w-100 rounded-0 form-control-lg  " id="search-input" type="search"
-                            name="search" value="{{ search_query }}">
+                            name="search" value="{{ search_term }}">
                         <button class="form-contro rounded-0 btn btn-lg btn-accent form-control-lg" type="submit"><i
                                 class="fa fa-search"></i></button>
 
@@ -56,9 +46,9 @@
 
     </div>
 </section>
-<section class="page-content pb-5">
+<section class="page-content pt-3 pb-5">
     
-    <div class="container">
+    <div class="container ">
 
 
 

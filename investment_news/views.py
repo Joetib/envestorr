@@ -16,9 +16,15 @@ class BusinessNewsList(ListView):
         queryset = self.queryset
         self.search_term = self.request.GET.get("search", "")
         if self.search_term:
-            search_term_list = self.search_term.strip().split()
-            queryset = queryset.filter(Q(title__icontains=search_term_list)|Q(description__icontains=search_term_list) | Q(content__icontains=self.search_term))
+            queryset = queryset.filter(Q(title__icontains=self.search_term)|Q(description__icontains=self.search_term) | Q(content__icontains=self.search_term))
         return queryset
+    
+    def get_context_data(self):
+        context = super().get_context_data()
+        context['search_term'] = self.search_term
+        return context
+
+    
 
 class BusinessNewsDetail(DetailView):
     model = BusinessNews
