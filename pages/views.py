@@ -20,7 +20,7 @@ class HomePageView(TemplateView):
         
         context['slides'] = slides
         context['slides_count'] = range(slides.count()) if slides else range(1)
-        context['business_news_list'] = BusinessNews.objects.all()
+        context['business_news_list'] = BusinessNews.objects.all()[:6]
         context['investment_opportunities'] = models.InvestmentOpportunity.objects.all()[:6]
         return context
 
