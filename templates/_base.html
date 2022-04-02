@@ -71,7 +71,8 @@
                   <a class="nav-link" href="{% url 'about' %}">About Us<span class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">
-                  <a class="nav-link" href="{% url 'terms-and-conditions' %}">Terms and Conditions<span class="sr-only">(current)</span></a>
+                  <a class="nav-link" href="{% url 'terms-and-conditions' %}">Terms and Conditions<span
+                      class="sr-only">(current)</span></a>
                 </li>
 
 
@@ -167,24 +168,24 @@
   {% endblock content %}
 
   <section class=" py-5">
-    <div class="container" >
+    <div class="container">
 
-        <h2 class="page-title mb-5 border-left-thick-red  pl-3" >Disclaimer</h2>
+      <h2 class="page-title mb-5 border-left-thick-red  pl-3">Disclaimer</h2>
 
 
-        <div class="row position-relative">
-            <div class="col-md-8">
-                {{ configuration.disclaimer | safe }}
-            </div>
-            <div class="disclaimer-image-container col-md-4  " >
-                <img class="img img-default" src="{% static 'images/tac.png' %}">
-            </div>
-
+      <div class="row position-relative">
+        <div class="col-md-8">
+          {{ configuration.disclaimer | safe }}
         </div>
+        <div class="disclaimer-image-container col-md-4  ">
+          <img class="img img-default" src="{% static 'images/tac.png' %}">
+        </div>
+
+      </div>
 
     </div>
 
-</section>
+  </section>
 
 
   <footer class="footer bg-white ">
@@ -198,14 +199,48 @@
           <p class="m-0 py-1"><a href="{% url 'about' %}">About Us</a></p>
           <p class="m-0 py-1"><a href="{% url 'terms-and-conditions' %}">Terms and Conditions</a></p>
         </div>
-        
-        <div class="col-6 col-md-4 py-2">
-          <h6 class='font-weight-bold'>Location</h6>
-          <p class="m-0 py-1">Kumasi</p>
-          <p class="m-0 py-1">Ashanti Region</p>
-          <p class="m-0 py-1"><a href="tel:011111111">Call Us</a></p>
-          <p class="m-0 py-1 ">or <a href="mailto:envestorr@envestorr.com">Leave a mail</a></p>
 
+        <div class="col-6 col-md-4 py-2">
+          <h6 class='font-weight-bold'>Find Us</h6>
+          <p class="m-0 py-1">{{ configuration.location }}</p>
+          
+          <div class="d-flex">
+
+            <div class="px-0 py-2 pr-2">
+
+              <a href="{{ configuration.facebook_url }}" class="btn btn-fb p-3 b-radious"><i
+                  class="fab fa-facebook-f"></i></a>
+            </div>
+            <div class="p-2">
+
+              <a href="{{ configuration.twitter_url }}" class="btn btn-tw p-3 b-radious"><i
+                  class="fab fa-twitter"></i></a>
+            </div>
+            <div class="p-2">
+              <a href="{{ configuration.linkdn_url }}" class="btn btn-li p-3 b-radious"><i
+                  class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="p-2">
+              <a href="{{ configuration.instagram_url }}" class="btn btn-whatsapp p-3 b-radious"><i
+                  class="fab fa-whatsapp"> </i></a>
+            </div>
+          </div>
+
+        </div>
+
+
+        <div class="col-6 col-md-4 py-2">
+          <h6 class='font-weight-bold'>Contact Us</h6>
+          <p class="m-0 py-1">{{ configuration.location }}</p>
+          <p class="m-0 py-1">
+            <a href="tel:{{ configuration.phone_number }}">
+            Call Us ({{ configuration.phone_number }})
+            </a>
+          </p>
+          <p class="m-0 py-1 ">or <a href="mailto:{{ configuration.email }}">
+            Leave a mail ({{configuration.email}})
+          </a></p>
+          
 
         </div>
       </div>

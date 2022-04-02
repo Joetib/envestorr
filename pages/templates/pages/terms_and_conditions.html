@@ -27,8 +27,8 @@
 
 <section class="page-content pb-5">
     <div class="bg-light py-5  ">
-        <div class="container ">
-            {{ configuration.terms_and_condition | safe }}
+        <div class="container "> helo
+            {{ configuration.terms_and_conditions | safe }}
            
         </div>
     </div>
@@ -36,24 +36,5 @@
 
 
 
-<section class=" py-5">
-    <div class="container" >
-
-        <h2 class="page-title mb-5 border-left-thick-primary  pl-3" >Disclaimer</h2>
-
-
-        <div class="row position-relative">
-            <div class="col-md-8">
-                {{ configuration.disclaimer | safe }}
-            </div>
-            <div class="disclaimer-image-container col-md-4  " >
-                <img class="img img-default" src="{% static 'images/tac.png' %}">
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
 
 {% endblock %}

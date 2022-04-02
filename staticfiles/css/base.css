@@ -242,6 +242,10 @@ textarea.form-control {
   animation: changelinkcolor 1.2s ease-in;
 }
 
+.btn-tw{color:#fff;background-color:#55acee !important}.btn-tw:hover{color:#fff;background-color:#6cb7f0}
+.btn-fb{color:#fff;background-color:#3b5998 !important}.btn-fb:hover{color:#fff;background-color:#4264aa}
+.btn-li{color:#fff;background-color:#0082ca !important}.btn-li:hover{color:#fff;background-color:#0092e4}
+.btn-whatsapp{color:#fff;background-color:#25d366 !important}.btn-whatsapp:hover{color:#fff;background-color:#36dc74}
 @keyframes changelinkcolor {
   from {
     color: #03a099;
