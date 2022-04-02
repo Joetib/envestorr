@@ -72,7 +72,7 @@
         <div class="d-flex overflow-x-auto">
             {% for article in articles %}
             <div
-                class="col-6 {% cycle 'pr-1' 'pl-1' %} px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
+                class="col-9 px-1 px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
 
                 {% include '_partials/_article_card.html' %}
             </div>
@@ -90,13 +90,13 @@
     </div>
 </section>
 
-<section class="page-content bg-white py-5">
+<section class="page-content bg-secondary py-5">
     <div class="container py-3">
         <h2 class="page-title mb-5 border-left-thick-primary pl-3">News Worldwide</h2>
         <div class="d-flex overflow-x-auto pb-3">
             {% for item in business_news_list %}
             <div
-                class="col-12 px-2 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+                class="col-9 px-2 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
 
                 {% include 'business_news/_cards/_business_news_card_title_image.html' %}
             </div>
@@ -122,7 +122,7 @@
         <div class="d-flex overflow-x-auto">
             {% for item in investment_opportunities %}
             <div
-                class="col-6 {% cycle 'pr-1' 'pl-1' %} px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
+                class="col-9 px-1 px-sm-3 px-md-3  col-sm-6 col-md-4 col-lg-3 col-xl-3  pb-4 pb-sm-3  pb-md-5 ">
 
                 {% include 'pages/_cards/_investment_opportunity_card.html' %}
             </div>
