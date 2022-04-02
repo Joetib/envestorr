@@ -2,32 +2,95 @@
 {% load static %}
 
 {% block content %}
-<section class="header-section tex-white">
+<section>
+    <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+        <ol class="carousel-indicators">
+            <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+            <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+        </ol>
+        <div class="carousel-inner">
+            {% for slide in slides %}
+            <div class="carousel-item {% if forloop.counter0 == 0 %} active {% endif %} position-relative "
+                style="height: 60vh;">
 
+                <img class="d-block img-default h-100 w-100" src="{{ slide.picture.url }}" alt="First slide">
+                <div class="overlay">
+                    <div class="container  h-100">
 
-    <div class="background-image-clipped bg-white">
-        <img src="{% static 'images/invest.png' %}">
-
-    </div>
-    <div class="container header-section-content">
-        <div class="d-flex flex-row py-5 justify-content-between">
-
-
-            <div class="content text-dark ">
-                <p class="lead m-0">Welcome to</p>
-                <h1 class="page-tite display-2 font-weight-bold m-0 text-accent ">Envestorr</h1>
-                <p class="lead m-0">Home to everything investment..</p>
+                        <div
+                            class="col-12 pl-md-5 px-lg-0 col-md-8 h-100 px-2 text-white d-flex flex-column justify-content-center">
+                            <p class="lead">{{ slide.leading }}</p>
+                            <h1 class="display-3 font-weight-bolder">{{ slide.title }}</h1>
+                            <p class="lead">{{ slide.trailing }}</p>
+                            {% if slide.action_url %}
+                            <p>
+                                <a href="{{ slide.action_url }}" class="btn btn-lg btn-primary py-3 px-5">{{
+                                    slide.action_text }}</a>
+                            </p>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
             </div>
+            {% empty %}
+            <div class="carousel-item active position-relative "
+                style="height: 60vh;">
+
+                <img class="d-block img-default h-100 w-100" src="{% static 'images/tac.png' %}" alt="First slide">
+                <div class="overlay">
+                    <div class="container  h-100">
+
+                        <div
+                            class="col-12 pl-md-5 px-lg-0 col-md-8 h-100 px-2 text-white d-flex flex-column justify-content-center">
+                            <p class="lead">Welcome to </p>
+                            <h1 class="display-3 font-weight-bolder">Envestorr</h1>
+                            <p class="lead">Home to everything investment</p>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+</section>
+
+<section class="page-content bg-main py-5">
+    <div class="container py-3">
+        <h2 class="page-title mb-5 border-left-thick-primary pl-3">News Worldwide</h2>
+        <div class="d-flex overflow-x-auto pb-3">
+            {% for item in business_news_list %}
+            <div
+                class="col-12 px-2 col-sm-6 col-md-6 col-lg-4 col-xl-4 ">
+
+                {% include 'business_news/_cards/_business_news_card_title_image.html' %}
+            </div>
+            {% empty %}
+            <div class="col-12 py-3 text-danger">
+                <p>Sorry no articles were found</p>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="pt-3">
+
+            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'blog:article-list' %}"><i
+                    class="fa fa-arrow-right mr-3"></i> See more...</a>
         </div>
     </div>
 </section>
 
-
-
 <section class="page-content bg-main py-5">
     <div class="container py-3">
-        <h2 class="page-title mb-5 border-left-thick-primary pl-3"
-            >Recent Articles</h2>
+        <h2 class="page-title mb-5 border-left-thick-primary pl-3">Recent Articles</h2>
         <div class="d-flex overflow-x-auto">
             {% for article in articles %}
             <div
@@ -43,15 +106,15 @@
         </div>
         <div class="pt-3">
 
-            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'blog:article-list' %}"><i class="fa fa-arrow-right mr-3"></i> See more...</a>
+            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'blog:article-list' %}"><i
+                    class="fa fa-arrow-right mr-3"></i> See more...</a>
         </div>
     </div>
 </section>
 
 <section class="page-content bg-light py-5">
     <div class="container py-3">
-        <h2 class="page-title mb-5 border-left-thick-primary pl-3"
-            >Recent Investment Oppportunities</h2>
+        <h2 class="page-title mb-5 border-left-thick-primary pl-3">Recent Investment Oppportunities</h2>
         <div class="d-flex overflow-x-auto">
             {% for item in investment_opportunities %}
             <div
@@ -67,7 +130,8 @@
         </div>
         <div class="pt-3">
 
-            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'investment-opportunity-list' %}"><i class="fa fa-arrow-right mr-3"></i> See more...</a>
+            <a class="btn btn-lg rounded-5 py-3 px-4 btn-primary" href="{% url 'investment-opportunity-list' %}"><i
+                    class="fa fa-arrow-right mr-3"></i> See more...</a>
         </div>
     </div>
 </section>

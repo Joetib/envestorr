@@ -3,6 +3,8 @@ from django.db.models import Q
 from django.shortcuts import get_object_or_404
 
 from blog.models import Article
+from configuration.models import SiteSlide
+from investment_news.models import BusinessNews
 from . import models
 from taggit.models import Tag
 from django.views.generic import TemplateView, ListView, DetailView
@@ -14,6 +16,8 @@ class HomePageView(TemplateView):
     def get_context_data(self, **kwargs) :
         context = super().get_context_data(**kwargs)
         context['articles'] = Article.objects.all()[:6]
+        context['slides'] = SiteSlide.objects.filter(active=True)
+        context['business_news_list'] = BusinessNews.objects.all()
         context['investment_opportunities'] = models.InvestmentOpportunity.objects.all()[:6]
         return context
 

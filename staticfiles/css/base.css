@@ -421,6 +421,15 @@ body *::-webkit-scrollbar-thumb {
 ::-webkit-scrollbar-thumb:hover {
   background: #777;
 }
+.overlay{
+  position: absolute;
+  z-index: 1;
+  background:linear-gradient(to right, black, rgba(0, 0, 0, 0.4));
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
 
 @media only screen and (max-width: 567px) {
   :root {

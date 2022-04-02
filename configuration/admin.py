@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.utils.html import mark_safe
 
 
-from .models import Configuration
+from .models import Configuration, SiteSlide
 
 admin.site.site_header = "Envestorr"
 admin.site.index_title = "Welcome to Envestorr Administration Panel"
@@ -60,3 +60,8 @@ class ImageAdmin(admin.ModelAdmin):
 @admin.register(Configuration)
 class ConfigurationAdmin(admin.ModelAdmin):
     pass
+
+
+@admin.register(SiteSlide)
+class SiteSlideAdmin(ImageAdmin):
+    image_fields = ['picture',]

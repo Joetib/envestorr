@@ -33,3 +33,20 @@ class Configuration(models.Model):
     def save(self, *args, **kwargs):
         self.id = 1
         super().save()
+
+
+class SiteSlide(models.Model):
+    leading = models.CharField(max_length=100, help_text="Leading is the text that appears before the slide title")
+    title = models.CharField(max_length=70, help_text="The bold part of the slide")
+    trailing = models.CharField(max_length=200, help_text="Text below the title")
+    picture = models.ImageField(upload_to="slides/%Y", help_text="The slide background picture")
+    action_text = models.CharField(max_length=50, help_text="The text that shows inside the slide button")
+    action_url = models.URLField(help_text="the link that the button should go to.")
+    active = models.BooleanField(default=True, help_text="Tells whether the slide should show on the side.")
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+    class Meta:
+        ordering = ("-date_created",)
+
+    def __str__(self) -> str:
+        return self.title
