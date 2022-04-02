@@ -180,6 +180,10 @@ body {
 .pricing-header {
   max-width: 700px;
 }
+.carousel-item {
+  height: 50vh; 
+  
+}
 
 .footer {
   /* Set the fixed height of the footer here */
@@ -450,6 +454,10 @@ body *::-webkit-scrollbar-thumb {
     justify-content: center;
     align-items: center;
     left: 100%;
+  }
+  .carousel-item {
+    height: 45vh; 
+    
   }
 }
 

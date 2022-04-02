@@ -40,9 +40,9 @@ class SiteSlide(models.Model):
     title = models.CharField(max_length=70, help_text="The bold part of the slide")
     trailing = models.CharField(max_length=200, help_text="Text below the title")
     picture = models.ImageField(upload_to="slides/%Y", help_text="The slide background picture")
-    action_text = models.CharField(max_length=50, help_text="The text that shows inside the slide button")
-    action_url = models.URLField(help_text="the link that the button should go to.")
-    active = models.BooleanField(default=True, help_text="Tells whether the slide should show on the side.")
+    action_text = models.CharField(max_length=50, blank=True, help_text="The text that shows inside the slide button")
+    action_url = models.URLField(blank=True, help_text="the link that the button should go to.")
+    active = models.BooleanField(default=True,  help_text="Tells whether the slide should show on the side.")
     date_created = models.DateTimeField(auto_now_add=True)
     last_modified = models.DateTimeField(auto_now=True)
     class Meta:

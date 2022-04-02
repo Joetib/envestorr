@@ -14,9 +14,12 @@ class HomePageView(TemplateView):
     template_name = "pages/home.html"
 
     def get_context_data(self, **kwargs) :
+        slides = SiteSlide.objects.filter(active=True)
         context = super().get_context_data(**kwargs)
         context['articles'] = Article.objects.all()[:6]
-        context['slides'] = SiteSlide.objects.filter(active=True)
+        
+        context['slides'] = slides
+        context['slides_count'] = range(slides.count()) if slides else range(1)
         context['business_news_list'] = BusinessNews.objects.all()
         context['investment_opportunities'] = models.InvestmentOpportunity.objects.all()[:6]
         return context
