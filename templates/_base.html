@@ -192,7 +192,7 @@
     <div class="container">
       <div class="row py-4">
         <div class="col-6 col-md-4 py-3">
-          <h6 class='font-weight-bold'>Important links.</h6>
+          <h5 class='font-weight-bold text-uppercase'>Important links.</h5>
           <p class="m-0 py-1"><a href="{% url 'home'%}">Home</a></p>
           <p class="m-0 py-1"><a href="{% url 'investment-opportunity-list' %}">Investment Opportunities </a></p>
           <p class="m-0 py-1"><a href="{% url 'investment_news:business-news-list' %}">Business News </a></p>
@@ -201,7 +201,7 @@
         </div>
 
         <div class="col-6 col-md-4 py-2">
-          <h6 class='font-weight-bold'>Find Us</h6>
+          <h5 class='font-weight-bold text-uppercase'>Find Us</h5>
           <p class="m-0 py-1">{{ configuration.location }}</p>
           
           <div class="d-flex">
@@ -230,15 +230,15 @@
 
 
         <div class="col-6 col-md-4 py-2">
-          <h6 class='font-weight-bold'>Contact Us</h6>
+          <h5 class='font-weight-bold font-md text-uppercase'>Contact Us</h5>
           <p class="m-0 py-1">{{ configuration.location }}</p>
           <p class="m-0 py-1">
             <a href="tel:{{ configuration.phone_number }}">
-            Call Us ({{ configuration.phone_number }})
+            Call Us <br>({{ configuration.phone_number }})
             </a>
           </p>
           <p class="m-0 py-1 ">or <a href="mailto:{{ configuration.email }}">
-            Leave a mail ({{configuration.email}})
+            Email Us Now<br>({{configuration.email}})
           </a></p>
           
 
