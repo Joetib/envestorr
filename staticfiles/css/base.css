@@ -456,7 +456,7 @@ body *::-webkit-scrollbar-thumb {
     left: 100%;
   }
   .carousel-item {
-    height: 45vh; 
+    height: 50vh; 
     
   }
 }
