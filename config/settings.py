@@ -169,7 +169,7 @@ USE_TZ = True
 # STATIC
 # ------------------------------------------------------------------------------
 STATIC_URL = "/static/"
-STATIC_ROOT = BASE_DIR / "static"
+STATIC_ROOT = env('STATIC_ROOT')
 MEDIA_URL = "/media/"
 MEDIA_ROOT = env('MEDIA_ROOT')
 
