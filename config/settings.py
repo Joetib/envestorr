@@ -61,6 +61,7 @@ INSTALLED_APPS = [
     "pages",
     "blog",
     'investment_news',
+    "stocks",
     "unicorn_messaging",
 ]
 
