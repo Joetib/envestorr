@@ -15,7 +15,7 @@ class StocksList(ListView):
     queryset = models.StockEntry.objects.order_by("-date")
     template_name = "stocks/stock_list.html"
     context_object_name = "stocks"
-    paginate_by = 37
+    paginate_by = 37 # the total number 
 
     def get_queryset(self):
         self.company = None
@@ -70,7 +70,7 @@ class StockCompanyDetail(DetailView):
         today = timezone.now()
 
         start_date_arg = self.request.GET.get("start_date")
-        least_day = timezone.now() - datetime.timedelta(days=80)
+        least_day = timezone.now() - datetime.timedelta(days=30)
         if start_date_arg:
             start_date = datetime.date.fromisoformat(start_date_arg)
         else:
