@@ -31,8 +31,8 @@ class Command(BaseCommand):
                     price_change = Decimal(data[7].replace(',', '')),
                      closing_bid_price = Decimal(data[8].replace(',', '')) if data[8] else Decimal(0), 
                      closing_offer_price = Decimal(data[9].replace(',', '')) if data[9] else Decimal(0), 
-                     total_shares_traded = data[10].replace(',', ''), 
-                     total_value_traded = Decimal(data[11].replace(',', '')),
+                     total_shares_traded = data[10].replace(',', '') if data[10] else Decimal(0), 
+                     total_value_traded = Decimal(data[11].replace(',', '')) if data[11] else Decimal(0),
                     
                 ).save()
                 
