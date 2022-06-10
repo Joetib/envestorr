@@ -87,8 +87,9 @@ class Company(models.Model):
     def save(self, *args, **kwargs):
         if not self.slug:
             self.slug = slugify(self.label)
-            self.update_with_json()
-        return super(Company, self).save(*args, **kwargs)
+        super(Company, self).save(*args, **kwargs)
+        if not self.name:
+            self.fetch_and_update()
     
     def get_absolute_url(self) -> str:
         return reverse("stocks:stocks-company-detail", kwargs={"slug": self.slug})

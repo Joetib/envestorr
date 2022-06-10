@@ -7,7 +7,7 @@ from stocks.models import Company, StockEntry
 
 @admin.register(Company)
 class CompanyAdmin(admin.ModelAdmin):
-    list_display = ("label", "name")
+    list_display = ("label", "name", "capital", "shares")
 
 @admin.register(StockEntry)
 class StockEntryAdmin(admin.ModelAdmin):

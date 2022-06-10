@@ -12,18 +12,19 @@ class Command(BaseCommand):
     def handle(self, *args, **kwargs):
         time = timezone.now()
         self.stdout.write(f"Running News background tasks: {time}")
-        with open('data1.csv') as file:
+        with open('data.csv') as file:
             reader = csv.reader(file.readlines())
             
             next(reader)
             for data in reader:
+                if not data:
+                    continue
                 print(data)
                 
                 StockEntry(
                     date = data[0],
                     company=Company.objects.get_or_create(label=data[1])[0],
-                    year_high=Decimal(data[2].replace(',', '')),
-                    year_low = Decimal(data[3].replace(',', '')),
+                    
                     
                     opening_price = Decimal(data[5].replace(',', '')),
                     closing_price = Decimal(data[6].replace(',', '')), 
