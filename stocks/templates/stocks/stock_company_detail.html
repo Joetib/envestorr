@@ -1,0 +1,193 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="header-section bg-primary">
+
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-between">
+
+
+            <div class="content text-white">
+                <p class="lead"> Company Profile of </p>
+                <h1 class="page-title m-0">{{ company.name}} ({{ company.label }})</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section class="stock-details bg-secondary">
+    <div class="container py-5">
+        <div class="row">
+
+
+
+            <div class="col-lg-8 col-lg-9 py-4 px-0">
+                <div class="container-fluid pb-4">
+                    <h5 class="font-weight-bold mb-3">Stock Listings</h5>
+
+                    <div class="bg-white py-3 px-4">
+                        <h6 class="font-weight-bold mb-3">Filter stocks listings</h6>
+
+                        <form>
+                            <div class="row form-row align-items-end">
+                                <div class="col form-group">
+                                    <label for="id_start_date">Start Date</label>
+                                    <input name="start_date" value="{{ start_date }}" id="id_start_date" type="date"
+                                        class="form-control form-control-lg">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="id_end_date">End Date</label>
+                                    <input type="date" value="{{ end_date }}" name="end_date" id="id_end_date"
+                                        class="form-control form-control-lg">
+                                </div>
+                                <div class="co form-group">
+                                    <input type="submit" class=" btn-primary form-control form-control-lg"
+                                        value="Filter">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="container-fluid">
+                    <table class="bg-white table table-striped table-lg">
+                        <thead class="sticky-top bg-primary text-white">
+                            <th>Date</th>
+                            <th>Opening Price</th>
+                            <th>Closing Price</th>
+                            <th>Total Shares Traded</th>
+                            <th>Total Value Traded (GH)</th>
+                        </thead>
+                        <tbody>
+                            {% for stock in stocks %}
+                            <tr>
+                                <td>{{ stock.date }}</td>
+                                <td>{{ stock.opening_price }}</td>
+                                <td>{{ stock.closing_price }}</td>
+                                <td>{{ stock.total_shares_traded }}</td>
+                                <td>{{ stock.total_value_traded }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div class="container-fluid graph py-3">
+                    <div class="bg-light py-3  ">
+                        <div class="container">
+                            <h5 class="font-weight-bold">
+                                Stock updates for the specified duration
+                            </h5>
+                        </div>
+                        <canvas id="myChart" style="width: 100%; height: 60vh;"></canvas>
+
+
+
+                    </div>
+                </div>
+            </div>
+
+
+
+            <div class="col-md-4 col-lg-3  pb-4 px-0 ">
+                <div class="sticky-top pt-4">
+                    <h5 class="font-weight-bold mb-3">Company Details</h5>
+
+                    <div class="bg-white p-3 rounded-3 mb-3">
+
+                        <h5 class="font-weight-bold">Name</h5>
+                        <p class="m-0">{{ company.name }}</p>
+                    </div>
+                    <div class=" bg-white mb-3">
+                            <table class="table table-right table-stried table-borderless">
+                                <tr>
+                                    <td>Shares</td>
+                                    <td>{{ company.shares }}</td>
+                                </tr>
+                                <tr>
+                                    <td>Capital (GH)</td>
+                                    <td>{{ company.capital }}</td>
+                                </tr>
+                            </table>
+                    </div>
+
+                    <div class="bg-white p-3 rounded-3 mb-3">
+
+                        <h5 class="font-weight-bold">Address</h5>
+                        <p class="m-0">{{ company.address}}</p>
+                    </div>
+
+
+                    <div class="bg-white p-3 rounded-3 mb-3">
+
+                        <h5 class="font-weight-bold">Telephone</h5>
+                        {% for number in company.get_telephone_numbers %}
+                        <p class="m-0"><i class="fa fa-phone-square" aria-hidden="true"></i><a href="tel:{{ number }}"
+                                class="pl-2">{{ number }}</a></p>
+                        {% endfor %}
+                    </div>
+
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+</section>
+
+
+{% endblock %}
+
+
+
+
+{% block extra_js %}
+
+<script defer>
+    const ctx = document.getElementById('myChart').getContext('2d');
+    const myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: JSON.parse(`{{ stocks_labels | safe }}`),
+            datasets: [{
+                label: 'Daily Price',
+                data: JSON.parse(`{{ stocks_data | safe }}`),
+                backgroundColor: [
+                    'rgba(255, 99, 132, 0.2)',
+                    'rgba(54, 162, 235, 0.2)',
+                    'rgba(255, 206, 86, 0.2)',
+                    'rgba(75, 192, 192, 0.2)',
+                    'rgba(153, 102, 255, 0.2)',
+                    'rgba(255, 159, 64, 0.2)'
+                ],
+                borderColor: [
+                    'rgba(255, 99, 132, 1)',
+                    'rgba(54, 162, 235, 1)',
+                    'rgba(255, 206, 86, 1)',
+                    'rgba(75, 192, 192, 1)',
+                    'rgba(153, 102, 255, 1)',
+                    'rgba(255, 159, 64, 1)'
+                ],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
+{% endblock %}

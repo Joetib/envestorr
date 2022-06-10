@@ -1,0 +1,116 @@
+{% extends "_base.html" %}
+{% load static %}
+
+{% block content %}
+<section class="header-section bg-primary">
+
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-between">
+
+
+            <div class="content text-white">
+                <h1 class="page-title m-0">Stocks Today</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+<section>
+    <div class="container  py-4">
+        <div class="bg-white py-3 px-4">
+
+        </div>
+
+    </div>
+</section>
+
+<section class="page-content pb-5">
+    <div class="bg-light py-5  ">
+        <div class="container ">
+            <div class="row">
+                <div class="col-md-4 col-lg-3">
+                    <div class="bg-white p-3 sticky-top">
+
+                        <h6 class="font-weight-bold mb-3">Filter stocks listings</h6>
+
+                        <form>
+                            <div class="row form-row align-items-end">
+                                <div class="col form-group">
+                                    <label for="id_start_date">Start Date</label>
+                                    <input name="start_date" value="{{ start_date }}" id="id_start_date" type="date"
+                                        class="form-control form-control-lg">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="id_end_date">End Date</label>
+                                    <input type="date" value="{{ end_date }}" name="end_date" id="id_end_date"
+                                        class="form-control form-control-lg">
+                                </div>
+                                <div class="col form-group">
+                                    <label for="id_company">Company</label>
+                                    <select id="id_company" name="company" value="{{ company.label }}" class="form-control form-control-lg">
+                                        <option value="">----------</option>
+                                        {% for company in companies %}
+                                        <option value="{{ company.label }}">{{ company.name }}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                <div class="co form-group">
+                                    <input type="submit" class=" btn-primary form-control form-control-lg"
+                                        value="Filter">
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <div class="col-md-8 col-lg-9">
+
+                    <table class="bg-white table table-striped table-lg">
+                        <thead class=" sticky-top bg-primary text-white">
+                            <th>Date</th>
+                            <th>Label (Name)</th>
+                            <th>Opening Price</th>
+                            <th>Closing Price</th>
+                            <th>Total Shares Traded</th>
+                            <th>Total Value Traded (GH)</th>
+                        </thead>
+                        <tbody>
+                            {% for stock in stocks %}
+                            <tr>
+                                <td><a href="{{ stock.company.get_absolute_url }}" class="text-muted">
+                                        {{ stock.date}}
+                                    </a></td>
+                                <td><a href="{{ stock.company.get_absolute_url }}"
+                                        class="text-primary font-weight-bold">
+                                        {{ stock.company }}
+                                    </a></td>
+                                <td>{{ stock.opening_price }}</td>
+                                <td>{{ stock.closing_price }}</td>
+                                <td>{{ stock.total_shares_traded }}</td>
+                                <td>{{ stock.total_value_traded }}</td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                    {% include "_pagination.html" %}
+                </div>
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

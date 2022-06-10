@@ -8,9 +8,10 @@ urlpatterns = [
     path("unicorn/", include("django_unicorn.urls")),
     path('admin/', admin.site.urls),
     path('accounts/', include('allauth.urls')),
-    path('', include('pages.urls')),
+    path('stocks/', include('stocks.urls', namespace="stocks")),
     path('blog/', include('blog.urls', namespace="blog")),
     path('business-news/', include('investment_news.urls', namespace="investment_news")),
+    path('', include('pages.urls')),
 ]
 
 if settings.DEBUG:
