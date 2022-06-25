@@ -9,9 +9,11 @@ from django.contrib.sites.models import Site
 
 
 def send_email(newsletter: NewsLetter):
+    print(f"sending {newsletter}")
     sent_to = []
     for recipient in NewsLeterContact.objects.filter(~Q(newsletters=newsletter)):
         try:
+            print(f"Sending email for {recipient}")
             send_email_for_recipient(newsletter=newsletter, recipient=recipient)
             sent_to.append(recipient)
         except Exception as e:
