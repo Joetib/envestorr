@@ -720,3 +720,24 @@ body *::-webkit-scrollbar-thumb {
 table.table-right > tbody > tr > td:nth-child(2) {
   text-align: right;
 }
+
+
+.subscribe-title {
+  font-size: 2.2em;
+}
+.newsletter-shadow {
+  border-radius: 0px 100px 0px 00px;
+  overflow: hidden;
+  box-shadow: 10px 10px 20px   rgba(247, 108, 184, 0.4);
+}
+
+@media  only screen and (min-width: 1000px) {
+  .subscribe-title {
+   font-size: 3em;
+  } 
+ }
+@media  only screen and (min-width: 500px) and (max-width: 680px) {
+ .subscribe-title {
+  font-size: 1.8em;
+ } 
+}

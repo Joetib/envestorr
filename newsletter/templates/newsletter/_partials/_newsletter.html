@@ -1,0 +1,57 @@
+<section class="bg-light py-5">
+    <div class="container py-5">
+        <div class="col-12 newsletter-shadow">
+        <div class="row">
+            <div class="col-sm-6 bg-white border-left-thick-red">
+
+                <div class="container h-100 py-4  d-flex flex-column justify-content-center">
+                    <h2 class="font-weight-bold text-uppercase  subscribe-title">Subscribe to our Newletter</h2>
+                    <p class="lead">And receive weekly updates...</p>
+                </div>
+            </div>
+            <div class="col-sm-6 py-5 bg-danger">
+                <form method="POST" action="{% url 'newsletter:subscribe' %}">
+                    {% csrf_token %}
+                    <div class="container">
+                        <div class="form-row">
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="id_newsletter_first_name" class="text-white">First Name</label>
+                                    <input type="text" id="id_newsletter_first_name" name="first_name" class="form-control form-control-lg">
+                                </div>
+                            </div>
+
+                            <div class="col-6">
+                                <div class="form-group">
+                                    <label for="id_newsletter_last_name" class="text-white">Last Name</label>
+                                    <input type="text" id="id_newsletter_last_name" name="last_name" class="form-control form-control-lg">
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="form-row">
+                            <div class="col-12">
+                                <div class="form-group">
+                                    <label for="id_newsletter_email" class="text-white">Email</label>
+                                    <input type="text" id="id_newsletter_email" name="email" class="form-control form-control-lg">
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="col-12 pt-3">
+                                <div class="form-group">
+                                    <input type="submit"value="Subscribe" class="form-control form-control-lg btn btn-lg btn-dark">
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </form>
+
+            </div>
+        </div>
+        </div>
+    </div>
+
+</section>
