@@ -6,7 +6,6 @@ from django.core.mail import send_mail
 from bs4 import BeautifulSoup
 from django.contrib.sites.models import Site
 
-n = NewsLetter.objects.first()
 
 
 def send_email(newsletter: NewsLetter):
