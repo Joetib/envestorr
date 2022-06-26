@@ -17,7 +17,8 @@ def newsletter(request: HttpRequest):
     site = Site.objects.first()
 
     newsletter = NewsLetter.objects.filter(sent=False, is_draft=False).first()
-    send_email(newsletter=newsletter, site=site)
+    if newsletter:
+        send_email(newsletter=newsletter, site=site)
 
     return render(request, "newsletter/base.html", {"newsletter": newsletter, "host_name": site.domain.strip("/")})
 
