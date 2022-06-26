@@ -11,19 +11,20 @@ logger = logging.getLogger(__name__)
 
 def send_all_newsletters():
     logger.info("Sending unsent newsletters")
+    site = Site.objects.first()
     for newsletter in NewsLetter.objects.filter(sent=False, is_draft=False):
-        send_email(newsletter=newsletter)
-    logger.infor("Done sendng unsent newsletters")
+        send_email(newsletter=newsletter, site=site)
+    logger.info("Done sendng unsent newsletters")
     
 
-def send_email(newsletter: NewsLetter):
+def send_email(newsletter: NewsLetter, site:Site):
     """Send NewsLetter to the various contacts in the database"""
     logger.info(f"sending {newsletter}")
     sent_to = []
     for recipient in NewsLeterContact.objects.filter(~Q(newsletters=newsletter), active=True):
         try:
             logger.info(f"Sending email for {recipient} and newsletter {newsletter}")
-            send_email_for_recipient(newsletter=newsletter, recipient=recipient)
+            send_email_for_recipient(newsletter=newsletter, recipient=recipient, site=site)
             sent_to.append(recipient)
         except Exception as e:
             logger.error(e)
@@ -34,10 +35,9 @@ def send_email(newsletter: NewsLetter):
     logger.info(f"Done sending emails for newsletter: {newsletter}")
 
 
-def send_email_for_recipient(newsletter: NewsLetter, recipient: NewsLeterContact):
-
-    site = Site.objects.first()
-
+def send_email_for_recipient(newsletter: NewsLetter, recipient: NewsLeterContact, site:Site):
+    """Send the newsletter to a specific recipient."""
+    
     email = render_to_string(
         "newsletter/base.html",
         context={

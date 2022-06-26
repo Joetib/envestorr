@@ -5,13 +5,21 @@ from django.contrib import messages
 from newsletter.forms import NewsLetterContactForm
 from .models import NewsLeterContact, NewsLetter
 from .utils import send_email
+from django.contrib.sites.models import Site
+
+from django.contrib.auth.decorators import login_required
 # Create your views here.
 
+@login_required
+def newsletter(request: HttpRequest):
+    if not request.user.is_superuser:
+        raise Http404()
+    site = Site.objects.first()
 
-def newsletter(request):
-    newsletter = NewsLetter.objects.first()
-    send_email(newsletter=newsletter)
-    return render(request, "newsletter/base.html", {"newsletter": newsletter, "host_name": "http://localhost:8000"})
+    newsletter = NewsLetter.objects.filter(sent=False, is_draft=False).first()
+    send_email(newsletter=newsletter, site=site)
+
+    return render(request, "newsletter/base.html", {"newsletter": newsletter, "host_name": site.domain.strip("/")})
 
 
 def subscribe(request: HttpRequest) -> HttpResponse:
