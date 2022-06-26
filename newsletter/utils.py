@@ -5,27 +5,36 @@ from django.template.loader import render_to_string
 from django.core.mail import send_mail
 from bs4 import BeautifulSoup
 from django.contrib.sites.models import Site
+import logging
 
+logger = logging.getLogger(__name__)
 
+def send_all_newsletters():
+    logger.info("Sending unsent newsletters")
+    for newsletter in NewsLetter.objects.filter(sent=False, is_draft=False):
+        send_email(newsletter=newsletter)
+    logger.infor("Done sendng unsent newsletters")
+    
 
 def send_email(newsletter: NewsLetter):
-    print(f"sending {newsletter}")
+    """Send NewsLetter to the various contacts in the database"""
+    logger.info(f"sending {newsletter}")
     sent_to = []
-    for recipient in NewsLeterContact.objects.filter(~Q(newsletters=newsletter)):
+    for recipient in NewsLeterContact.objects.filter(~Q(newsletters=newsletter), active=True):
         try:
-            print(f"Sending email for {recipient}")
+            logger.info(f"Sending email for {recipient} and newsletter {newsletter}")
             send_email_for_recipient(newsletter=newsletter, recipient=recipient)
             sent_to.append(recipient)
         except Exception as e:
-            print(e)
+            logger.error(e)
     for recipient in sent_to:
         newsletter.sent_to.add(recipient)
+    newsletter.sent = True
     newsletter.save()
+    logger.info(f"Done sending emails for newsletter: {newsletter}")
 
 
 def send_email_for_recipient(newsletter: NewsLetter, recipient: NewsLeterContact):
-    recipients = NewsLeterContact.objects.filter(~Q(newsletters=newsletter))
-    print(recipients)
 
     site = Site.objects.first()
 
