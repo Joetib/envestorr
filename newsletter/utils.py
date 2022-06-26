@@ -10,34 +10,34 @@ import logging
 logger = logging.getLogger(__name__)
 
 def send_all_newsletters():
-    logger.info("Sending unsent newsletters")
+    print("Sending unsent newsletters")
     site = Site.objects.first()
     for newsletter in NewsLetter.objects.filter(sent=False, is_draft=False):
         send_email(newsletter=newsletter, site=site)
-    logger.info("Done sendng unsent newsletters")
+    print("Done sendng unsent newsletters")
     
 
 def send_email(newsletter: NewsLetter, site:Site):
     """Send NewsLetter to the various contacts in the database"""
-    logger.info(f"sending {newsletter}")
+    print(f"sending {newsletter}")
     sent_to = []
     for recipient in NewsLeterContact.objects.filter(~Q(newsletters=newsletter), active=True):
         try:
-            logger.info(f"Sending email for {recipient} and newsletter {newsletter}")
+            print(f"Sending email for {recipient} and newsletter {newsletter}")
             send_email_for_recipient(newsletter=newsletter, recipient=recipient, site=site)
             sent_to.append(recipient)
         except Exception as e:
-            logger.error(e)
+            print(e)
     for recipient in sent_to:
         newsletter.sent_to.add(recipient)
     newsletter.sent = True
     newsletter.save()
-    logger.info(f"Done sending emails for newsletter: {newsletter}")
+    print(f"Done sending emails for newsletter: {newsletter}")
 
 
 def send_email_for_recipient(newsletter: NewsLetter, recipient: NewsLeterContact, site:Site):
     """Send the newsletter to a specific recipient."""
-    
+
     email = render_to_string(
         "newsletter/base.html",
         context={
@@ -46,7 +46,7 @@ def send_email_for_recipient(newsletter: NewsLetter, recipient: NewsLeterContact
             "host_name": site.domain.strip("/"),
         },
     )
-    soup = BeautifulSoup(email)
+    soup = BeautifulSoup(email, features="html.parser")
 
     send_mail(
         subject=newsletter.title,
