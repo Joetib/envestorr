@@ -5,8 +5,6 @@ from ckeditor.fields import RichTextField
 
 
 class NewsLeterContact(models.Model):
-    first_name = models.CharField(max_length=100)
-    last_name = models.CharField(max_length=100)
     email = models.EmailField(unique=True)
 
     active = models.BooleanField(default=True)
@@ -19,7 +17,7 @@ class NewsLeterContact(models.Model):
         
     
     def __str__(self) -> str:
-        return f"{self.first_name} {self.last_name}"
+        return self.email
 
 
 

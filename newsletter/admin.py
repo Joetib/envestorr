@@ -8,9 +8,9 @@ from newsletter.models import NewsLeterContact, NewsLetter
 @admin.register(NewsLeterContact)
 class NewsLetterContactAdmin(admin.ModelAdmin):
     
-    list_display = ("email", "first_name", "last_name", "active",)
+    list_display = ("email",  "active",)
     list_filter = ("active", )
-    search_fields = ("email", "first_name", "last_name")
+    search_fields = ("email", )
 
 @admin.register(NewsLetter)
 class NewsLetterAdmin(admin.ModelAdmin):
