@@ -13,7 +13,7 @@ class NewsLeterContact(models.Model):
 
     class Meta:
         verbose_name_plural = "NewsLetter Contacts"
-        ordering = ("first_name", "date_created")
+        ordering = ("date_created",)
         
     
     def __str__(self) -> str:

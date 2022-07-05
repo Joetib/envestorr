@@ -8,9 +8,12 @@ from .utils import send_email
 from django.contrib.sites.models import Site
 
 from django.contrib.auth.decorators import login_required
+from django.contrib.admin.views.decorators import staff_member_required
+
 # Create your views here.
 
 @login_required
+@staff_member_required
 def newsletter(request: HttpRequest):
     if not request.user.is_superuser:
         raise Http404()
@@ -34,11 +37,7 @@ def subscribe(request: HttpRequest) -> HttpResponse:
         if newsletter_contact_form.is_valid():
             data = newsletter_contact_form.cleaned_data
             email = data['email']
-            first_name = data['first_name']
-            last_name = data["last_name"]
             newsletter_contact, created = NewsLeterContact.objects.get_or_create(email=email)
-            newsletter_contact.first_name = first_name
-            newsletter_contact.last_name = last_name
             newsletter_contact.active = True
             newsletter_contact.save()
             if created:
