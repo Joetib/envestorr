@@ -12,6 +12,7 @@ urlpatterns = [
     path('blog/', include('blog.urls', namespace="blog")),
     path('business-news/', include('investment_news.urls', namespace="investment_news")),
     path('newsletter/', include('newsletter.urls', namespace="newsletter")),
+    path('financial-tools/', include('financial_tools.urls', namespace="financial_tools")),
     path('', include('pages.urls')),
 ]
 

@@ -1,0 +1,43 @@
+{% extends '_base.html' %}
+
+{% load unicorn %}
+{% block content %}
+
+    <div class="d-flex justify-content-center bg-primary py-5">
+        <div class="container" style="max-width: 550px;">
+
+            <h1 class="pb-5 text-white font-weight-bold">Currency Converter</h1>
+    {% unicorn 'currency_converter' %}
+        </div>
+    </div>
+
+<div class="container pb-s5">
+    <div class="row">
+
+
+        <div class="col-md-12 py-5">
+            <div class="bg-white">
+<div class="container">
+<div class="p-3">
+                <h5 class="font-weight-bold ">Rates</h5>
+                <small>As Against the Ghana Cedi</small>
+                </div>
+                <div class="row">
+                    {% for currency in currencies %}
+                    <div class="col-6 col-sm-4 col-md-4 col-lg-3 p-2">
+                        <div class="bg-light p-3 h-100">
+
+                            <h6>{{ currency.name }} ({{ currency.symbol}})</h6>
+                            <p class="m-0 text-truncate">{{ currency.rate }}</p>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+
+            </div>
+            
+</div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

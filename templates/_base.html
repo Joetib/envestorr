@@ -1,5 +1,6 @@
 {% load static %}
 {% load markdown %}
+{% load unicorn %}
 <!DOCTYPE html>
 <html lang="en">
 
@@ -20,9 +21,11 @@
     integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2" crossorigin="anonymous">
   <link rel="stylesheet" href="{% static 'css/base.css' %}">
   {% endblock %}
+  {% unicorn_scripts %}
 </head>
 
 <body>
+  {% csrf_token %}
   <main role="main">
 
     <nav class="shadow-sm navbar navbar-light bg-white  text-dark py-3">
@@ -65,6 +68,10 @@
                 </li>
                 <li class="nav-item active">
                   <a class="nav-link" href="{% url 'stocks:stocks-list' %}">Stocks <span
+                      class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item active">
+                  <a class="nav-link" href="{% url 'financial_tools:currency-converter' %}">Currency Converter <span
                       class="sr-only">(current)</span></a>
                 </li>
                 <li class="nav-item active">

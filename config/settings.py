@@ -63,6 +63,7 @@ INSTALLED_APPS = [
     'investment_news',
     "stocks",
     "newsletter",
+    "financial_tools",
     "unicorn_messaging",
 ]
 
