@@ -2,10 +2,11 @@
 from typing import Dict
 from .models import Currency
 import requests
+from django.conf import settings
 class ExchangeRateService:
     BASE_URL =  "https://api.apilayer.com/exchangerates_data/"
     headers= {
-        "apikey": "lRmU3ots6XzaMgL03CuEIhEARs58TVD8"
+        "apikey": settings.CURRENCY_API_KEY
     }
 
     def convert(self, to: str, from_: str, amount: float) :
