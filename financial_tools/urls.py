@@ -9,6 +9,6 @@ urlpatterns = [
     path(
         "interest-calculator/",
         views.InterestCalculator.as_view(),
-        name="interest_calculator",
+        name="interest-calculator",
     ),
 ]

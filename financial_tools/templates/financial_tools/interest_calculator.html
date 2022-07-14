@@ -6,27 +6,34 @@
 <div class="d-flex justify-content-center bg-primary py-5">
     <div class="container" style="max-width: 550px;">
 
-        <h1 class="pb-5 text-white font-weight-bold">Interest Calculator</h1>
+        <h1 class="pb-5 text-white text-center font-weight-bold">Interest Calculator</h1>
 
         <div class="interest-calculator bg-white rounded-lg shadow-lg px-5 pt-5 pb-2">
             <form>
                 <div class="form-row">
                     <div class="form-group col-7">
+                        <label for="interest_capital_input">Capital</label>
                         <input type="number" id="interest_capital_input" class="form-control form-control-lg"
                             placeholder="Capital">
                     </div>
                     <div class="form-group col-5">
+                        <label for="interest_rate_input">Rate</label>
+
                         <input type="number" id="interest_rate_input" class="form-control form-control-lg"
                             placeholder="Rate">
 
                     </div>
                     <div class="form-group col-7">
+                        <label for="interest_time_input">Time</label>
+
                         <input type="number" id="interest_time_input" class="form-control form-control-lg"
                             placeholder="Time(years)">
 
                     </div>
                     <div class="form-group col-5">
                         <div class="form-row">
+                        <label for="interest_selected_type">Type</label>
+
                             <select id="interest_selected_type" class="form-control form-control-lg">
                                 <option value="s">Simple Interest</option>
                                 <option value="c">Compound Interest</option>
@@ -40,29 +47,36 @@
                     </div>
 
 
-                    <div class="col-12 d-none" id="interest_result_container">
-                        <h6 class="font-weight-bold p-2">Result</h6>
-                        <div class="bg-light p-2 ">
-                            <table class="table ">
-                                <tbody>
-                                    <tr>
-                                        <td>Interest</td>
-                                        <td class="font-weight-bold" id="interest_result">
 
-                                        </td>
-                                    </tr>
-                                    <tr>
-                                        <td>Total</td>
-                                        <td class="font-weight-bold" id="interest_result_total">
-                                        </td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
                 </div>
             </form>
 
+        </div>
+        <div class="px-5">
+            <div class="col-12 mt-3  mx- bg-white rounded-lg shadow-lg p-3 d-none" id="interest_result_container">
+                <h6 class="font-weight-bold p-1 text-center">Result</h6>
+                <div class=" p-1 ">
+                    <div class="container">
+                        <div class="row">
+                            <div class="col-6">
+                                <div class="bg-light p-3 border">
+
+                                    <h6 class="font-weight-bold">Interest</h6>
+                                    <h4 class="font-weight-bold " id="interest_result"></h4>
+                                </div>
+                            </div>
+                            <div class="col-6">
+                                <div class="bg-light p-3 border">
+
+                                    <h6 class="font-weight-bold">Total</h6>
+                                    <h4 class="font-weight-bold " id="interest_result_total"></h4>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
         </div>
     </div>
 </div>
@@ -95,10 +109,10 @@
         } else {
             //Compound interest
             console.log("Doing compound interest");
-            interest = capital * (Math.pow((1 + (rate /(100 * 1))), (1 * time)));
+            interest = capital * (Math.pow((1 + (rate / (100 * 1))), (1 * time)));
         }
         interest_result_element.innerText = interest;
-        interest_result_total_element.innerText =  interest + capital;
+        interest_result_total_element.innerText = interest + capital;
     });
 </script>
 {% endblock extra_js %}
