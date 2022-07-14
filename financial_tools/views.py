@@ -13,3 +13,8 @@ class CurrencyConverter(TemplateView):
         context =  super().get_context_data(**kwargs)
         context['currencies'] = Currency.objects.all()
         return context
+
+
+class InterestCalculator(TemplateView):
+    template_name: str = "financial_tools/interest_calculator.html"
+    
