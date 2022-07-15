@@ -111,8 +111,8 @@
             console.log("Doing compound interest");
             interest = capital * (Math.pow((1 + (rate / (100 * 1))), (1 * time)));
         }
-        interest_result_element.innerText = interest;
-        interest_result_total_element.innerText = interest + capital;
+        interest_result_element.innerText = +interest.toFixed();
+        interest_result_total_element.innerText = +(interest + capital).toFixed(4);
     });
 </script>
 {% endblock extra_js %}
