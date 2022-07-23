@@ -32,13 +32,13 @@
         <div class="container ">
             <div class="row h-100 pb-5">
                 
-                <div class="col-sm-8  py-3 col-xl-9 d-flex flex-column justify-content-between p-">
-                    <div class="bg-light pb-5 px-5 pt-3">
+                <div class="col-sm-8   p-2 p-sm-3 col-xl-9 d-flex flex-column justify-content-between p-">
+                    <div class="bg-light px-4 py-3">
                         <h6 class="font-weight-bold pb-3">Description</h6>
                         <p class="text-muted">{{ portfolio.details|truncatewords:10 }}</p>
                     </div>
                 </div>
-                <div class="col-sm-4 col-xl-3 py-3">
+                <div class="col-sm-4 col-xl-3  p-2 p-sm-3">
                     <div
                         class="border-left bg-primary  text-white d-flex flex-column align-items-center justify-content-center p-4">
 
@@ -48,21 +48,21 @@
                     </div>
                 </div>
 
-                <div class="col py-3">
+                <div class="col p-2 p-sm-3">
 
                     <div class="bg-light p-3 h-100">
                         <h6>Purchase Price (GH)</h6>
                         <h5 class="font-weight-bold">{{ portfolio.purchase_value|floatformat:2 }}</h5>
                     </div>
                 </div>
-                <div class="col py-3 ">
+                <div class="col p-2 p-sm-3 ">
                     <div class="bg-light p-3 h-100">
                         <h6>Current Price (GH)</h6>
                         <h5 class="font-weight-bold">{{ portfolio.current_value|floatformat:2 }}</h5>
                     </div>
                 </div>
 
-                <div class="col py-3 ">
+                <div class="col  p-2 p-sm-3 ">
                     {% with portfolio.percentage_change as percentage_change %}
                     <div class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white h-100 p-3">
                         <h6>Change (%)</h6>
@@ -70,7 +70,7 @@
                     </div>
                     {% endwith %}
                 </div>
-                <div class="col py-3">
+                <div class="col  p-2 p-sm-3">
 
                     {% with portfolio.profit as profit %}
                     <div class="{% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
