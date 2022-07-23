@@ -41,8 +41,8 @@
         </button>
 
         <div class="collapse navbar-collapse " id="navbarSupportedContent">
-          <div class="h-100 d-flex flex-column justify-content-between">
-            <div class="overflow-y-auto">
+          <div class="h-100vh d-flex flex-column justify-content-between overflow-y-auto">
+            <div class="overflow-y-auto" style="max-height: 100vh;">
               <div class="d-flex flex-row justify-content-between p-2">
                 <a class="navbar-brand font-weight-bold text-primar fixed" href="#">
                   <image style="width: 160px;" src="{% static 'images/logo.png' %}">
@@ -54,7 +54,7 @@
                   &times;
                 </button>
               </div>
-              <ul class="navbar-nav p-4 py-5">
+              <ul class="navbar-nav p-4 py-3">
                 <li class="nav-item active">
                   <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
                 </li>
@@ -98,7 +98,7 @@
 
               </ul>
             </div>
-            <ul class="navbar-nav p-4 mt-4 border-top bg-main">
+            <ul class="navbar-nav p-4  py-2  border-top bg-main">
               {% if request.user.is_authenticated %}
 
 
