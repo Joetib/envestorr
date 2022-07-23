@@ -98,30 +98,30 @@
                 <hr>
                 {% endif %}
                 <div class="py-3">
-                    <div class="bg-white  p-3 ">
+                    <div class="bg-white  py-3 ">
                         <h5 class="font-weight-bold px-3 pb-4">{{ stock.stock.name }}({{stock.stock.label}})</h5>
                         <div class="d-flex flex-row flex-wrap pb-4">
-                            <div class="col">
+                            <div class="col p-2 p-sm-3">
 
                                 <div class="bg-light p-3">
                                     <h6>Quantity</h6>
                                     <h5 class="font-weight-bold">{{ stock.quantity_purchased}}</h5>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col p-2 p-sm-3">
 
                                 <div class="bg-light p-3">
                                     <h6>Purchase Price (GH)</h6>
                                     <h5 class="font-weight-bold">{{ stock.purchase_value|floatformat:2 }}</h5>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col p-2 p-sm-3">
                                 <div class="bg-light p-3">
                                     <h6>Current Price (GH)</h6>
                                     <h5 class="font-weight-bold">{{ stock.current_value|floatformat:2 }}</h5>
                                 </div>
                             </div>
-                            <div class="col">
+                            <div class="col p-2 p-sm-3">
                                 {% with stock.percentage_change as percentage_change %}
                                 <div
                                     class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
@@ -130,7 +130,7 @@
                                 </div>
                                 {% endwith %}
                             </div>
-                            <div class="col">
+                            <div class="col p-2 p-sm-3">
                                 {% with stock.profit as profit %}
                                 <div
                                     class="{% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
