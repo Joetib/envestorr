@@ -142,7 +142,10 @@ class PortFolio(models.Model):
         return self.current_value() - self.purchase_value()
 
     def percentage_change(self) -> Decimal:
-        return (self.profit() * 100) / self.purchase_value()
+        purchase_value =  self.purchase_value()
+        if not purchase_value:
+            return 0
+        return (self.profit() * 100) / purchase_value
 
     def current_value(self):
         return sum([stock.current_value() for stock in self.stocks.all()])
@@ -172,7 +175,10 @@ class PortFolioStock(models.Model):
         return self.quantity_purchased * self.purchase_price
 
     def percentage_change(self):
-        return (self.profit() * 100 )/ self.purchase_value()
+        purchase_value =  self.purchase_value()
+        if not purchase_value:
+            return 0
+        return (self.profit() * 100 )/ purchase_value
     
     def profit(self):
         return self.current_value() - self.purchase_value()
