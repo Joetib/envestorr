@@ -1,0 +1,60 @@
+<div>
+    <!-- put component code here -->
+    <button unicorn:click="toggle_show" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Add Stock</button>
+    {% if show %}
+
+    <div class="d-flex justify-content-center align-items-center p-5 "
+        style="position: fixed; z-index: 99; top: 0; left: 0; width: 100vw; height:100vh; background: rgba(0,0,0,.6);">
+
+        <div class="bg-white shadow " style="width: 500px">
+            <div class="d-flex justify-content-end">
+                <button unicorn:click="toggle_show" class="btn btn-danger rounded-0">
+                    <i class="fa fa-times"></i></i>
+                </button>
+            </div>
+            <div class="px-5 pb-4 pt-3">
+                <h4 class="font-weight-bold pb-3 text-center">Create New PortFolio</h4>
+                <div class="form-group">
+                    <label for="portfolio_company">Company</label>
+                    <select id="portfolio_company" class="form-control text-dark" type="text"
+                        unicorn:model="company_id" >
+                        <option value="">Choose company</option>
+                        {% for company in companies %}
+                        <option value="{{ company.id }}">{{ company.name}}</option>
+                        {% endfor %}
+                    </select>
+                    <p class="text-danger">{{ company_error_message }}</p>
+                </div>
+                <div class="form-group">
+                    <div class="d-flex justify-content-between gap-2">
+
+                        <label for="portfolio_stock_price">Purchasing Price</label>
+                        {% if company %}
+                        <span class="text-muted">GH {{ company.current_stock_price }}</span>
+                        {% endif %}
+                    </div>
+                    <input id="portfolio_stock_price" class="form-control" type="number" step="0.01" unicorn:model.lazy="purchase_price"
+                        placeholder="for a unit stock">
+                    <p class="text-danger">{{ purchase_price_error_message }}</p>
+                </div>
+
+                <div class="form-group">
+                    
+                        <label for="portfolio_stock_quantity">Purchased Quantity</label>
+                                        <input id="portfolio_stock_quantity" class="form-control" type="number" step="1" unicorn:model.lazy="purchase_quantity"
+                        >
+                    <p class="text-danger">{{ purchase_quantity_error_message }}</p>
+                </div>
+
+                <div class="form-group pt-3">
+                    <button unicorn:click="add_stock"
+                        class="btn btn-lg btn-primary w-100 gap-2 d-flex justify-content-center align-items-center">Save
+                        <span unicorn:loading class="ms-3 loading spinner"></span>
+
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>

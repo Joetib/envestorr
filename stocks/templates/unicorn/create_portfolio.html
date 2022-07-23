@@ -1,0 +1,42 @@
+<div>
+    <!-- put component code here -->
+    <button unicorn:click="toggle_show" class="btn btn-primary btn-lg"><i class="fa fa-plus"></i> Create PortFolio</button>
+    {% if show %}
+
+    <div class="d-flex justify-content-center align-items-center p-5 "
+        style="position: fixed; z-index: 99; top: 0; left: 0; width: 100vw; height:100vh; background: rgba(0,0,0,.6);">
+
+        <div class="bg-white shadow " style="width: 500px">
+            <div class="d-flex justify-content-end">
+                <button unicorn:click="toggle_show" class="btn btn-danger rounded-0">
+                    <i class="fa fa-times"></i></i>
+                </button>
+            </div>
+            <div class="px-5 pb-4 pt-3">
+            <h4 class="font-weight-bold pb-3 text-center">Create New PortFolio</h4>
+            <div class="form-group">
+                <label for="portfolio_title">Title</label>
+                {{ title }}
+                <input id="portfolio_title" class="form-control text-dark" type="text" unicorn:model.lazy="title"
+                    placeholder="A title for this portfolio">
+                <p class="text-danger">{{ title_error_message }}</p>
+            </div>
+            <div class="form-group">
+                <label for="portfolio_details">Details</label>
+                <textarea id="portfolio_details" class="form-control" type="text" unicorn:model.lazy="details"
+                    placeholder="Simple description for this portfolio"></textarea>
+                <p class="text-danger">{{ details_error_message }}</p>
+            </div>
+
+            <div class="form-group pt-3">
+                <button unicorn:click="save_portfolio"
+                    class="btn btn-lg btn-primary w-100 gap-2 d-flex justify-content-center align-items-center">Next
+                    <span unicorn:loading class="ms-3 loading spinner"></span>
+
+                </button>
+            </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>

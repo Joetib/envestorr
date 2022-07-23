@@ -1,0 +1,162 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load unicorn %}
+{% block title %}PortFolios{% endblock %}
+
+{% block content %}
+<section class="header-section bg-primary">
+
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-center">
+
+
+            <div class="content text-white">
+                <p class="m-0 lead text-uppercase">PorFolio Details</p>
+                <h1 class="page-title m-0">{{ portfolio }}</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="page-content pb-5">
+    <div class="bg-white py-5  ">
+        <div class="container ">
+            <div class="row h-100 pb-5">
+                
+                <div class="col-sm-8  py-3 col-xl-9 d-flex flex-column justify-content-between p-">
+                    <div class="bg-light pb-5 px-5 pt-3">
+                        <h6 class="font-weight-bold pb-3">Description</h6>
+                        <p class="text-muted">{{ portfolio.details|truncatewords:10 }}</p>
+                    </div>
+                </div>
+                <div class="col-sm-4 col-xl-3 py-3">
+                    <div
+                        class="border-left bg-primary  text-white d-flex flex-column align-items-center justify-content-center p-4">
+
+                        <h6>Current Value</h6>
+
+                        <h2 class="font-weight-bold">GH {{ portfolio.current_value}}</h2>
+                    </div>
+                </div>
+
+                <div class="col py-3">
+
+                    <div class="bg-light p-3">
+                        <h6>Purchase Price (GH)</h6>
+                        <h5 class="font-weight-bold">{{ portfolio.purchase_value|floatformat:2 }}</h5>
+                    </div>
+                </div>
+                <div class="col py-3">
+                    <div class="bg-light p-3">
+                        <h6>Current Price (GH)</h6>
+                        <h5 class="font-weight-bold">{{ portfolio.current_value|floatformat:2 }}</h5>
+                    </div>
+                </div>
+
+                <div class="col py-3">
+                    {% with portfolio.percentage_change as percentage_change %}
+                    <div class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+                        <h6>Change (%)</h6>
+                        <h5 class="font-weight-bold">{{ percentage_change|floatformat:2 }} %</h5>
+                    </div>
+                    {% endwith %}
+                </div>
+                <div class="col py-3">
+
+                    {% with portfolio.profit as profit %}
+                    <div class="{% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+
+                        <h6>Profit (GH)</h6>
+                        <h5 class="font-weight-bold">{{ profit|floatformat:2 }}</h5>
+                    </div>
+                    {% endwith %}
+                </div>
+            </div>
+
+
+
+            <div class="py-5 bg-ligh border px-5 mt-5">
+                <div class="d-flex justify-content-between pb-5">
+
+                    <h3 class="font-weight-bold pb-4">Stocks</h3>
+                    {% unicorn 'add_portfolio_stock' portfolio=portfolio%}
+
+                </div>
+
+                {% for stock in portfolio.stocks.all %}
+                {% if not forloop.counter0 == 0 %}
+                <hr>
+                {% endif %}
+                <div class="py-3">
+                    <div class="bg-white  p-3 ">
+                        <h5 class="font-weight-bold px-3 pb-4">{{ stock.stock.name }}({{stock.stock.label}})</h5>
+                        <div class="d-flex flex-row flex-wrap pb-4">
+                            <div class="col">
+
+                                <div class="bg-light p-3">
+                                    <h6>Quantity</h6>
+                                    <h5 class="font-weight-bold">{{ stock.quantity_purchased}}</h5>
+                                </div>
+                            </div>
+                            <div class="col">
+
+                                <div class="bg-light p-3">
+                                    <h6>Purchase Price (GH)</h6>
+                                    <h5 class="font-weight-bold">{{ stock.purchase_value|floatformat:2 }}</h5>
+                                </div>
+                            </div>
+                            <div class="col">
+                                <div class="bg-light p-3">
+                                    <h6>Current Price (GH)</h6>
+                                    <h5 class="font-weight-bold">{{ stock.current_value|floatformat:2 }}</h5>
+                                </div>
+                            </div>
+                            <div class="col">
+                                {% with stock.percentage_change as percentage_change %}
+                                <div
+                                    class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+                                    <h6>Change (%)</h6>
+                                    <h5 class="font-weight-bold">{{ percentage_change|floatformat:2 }} %</h5>
+                                </div>
+                                {% endwith %}
+                            </div>
+                            <div class="col">
+                                {% with stock.profit as profit %}
+                                <div
+                                    class="{% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+
+                                    <h6>Profit (GH)</h6>
+                                    <h5 class="font-weight-bold">{{ profit|floatformat:2 }}</h5>
+                                </div>
+                                {% endwith %}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% empty %}
+                <div class="py-3">
+                    <p class="text-center text-danger">You have not added stocks to this portfolio yet.</p>
+                </div>
+                {% endfor %}
+            </div>
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

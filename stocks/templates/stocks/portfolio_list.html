@@ -1,0 +1,85 @@
+{% extends "_base.html" %}
+{% load static %}
+{% load unicorn %}
+{% block title %}PortFolios{% endblock %}
+
+{% block content %}
+<section class="header-section bg-primary">
+
+
+    <div class="background-image-cipped">
+
+    </div>
+    <div class="container header-section-content">
+        <div class="d-flex flex-row justify-content-center">
+
+
+            <div class="content text-white">
+                <h1 class="page-title m-0">PortFolios</h1>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+
+
+<section class="page-content pb-5">
+    <div class="bg-white py-5  ">
+        <div class="container ">
+            
+            {% unicorn 'create_portfolio' %}
+            <div class="row pt-3">
+                {% for portfolio in portfolios %}
+                <div class="col-lg-6 py-3">
+                    <a href="{{ portfolio.get_absolute_url }}">
+                        <div class="h-100 bg-light px-2 py-3 p-sm-4 rounded-5">
+                            <div class="container-fluid h-100">
+                                <div class="row h-100">
+                                    <div class="col-12">
+                                        <h4 class="font-weight-bold">{{ portfolio }}</h4>
+
+                                    </div>
+                                    <div class="col-sm-8  d-flex flex-column justify-content-between p-">
+                                        <div>
+                                            <p class="text-muted">{{ portfolio.details|truncatewords:10 }}</p>
+                                        </div>
+                                    </div>
+                                    <div class="col-sm-4 d-flex flex-column justify-content-center">
+                                        <div class="border-left p-2">
+
+                                            <h6>Current Value</h6>
+                                            <h2 class="font-weight-bold">{{ portfolio.current_value}}</h2>
+                                        </div>
+                                    </div>
+                                    <div class="col-12 pt-2">
+                                        <span class="text-primary">Details...</span>
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </a>
+                </div>
+                {% empty %}
+                <div class="col-12 py-3 text-center">
+                    <p class="text-danger">Sorry you have no portfolios at the moment.</p>
+                    <p>Want to create one?</p>
+                </div>
+                {% endfor %}
+            </div>
+            {% include "_pagination.html" %}
+
+        </div>
+
+
+    </div>
+</section>
+
+
+
+
+
+{% endblock %}

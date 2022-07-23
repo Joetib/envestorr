@@ -1,6 +1,7 @@
 import json
 from django.shortcuts import get_object_or_404, render
 from django.views.generic import ListView, TemplateView, DetailView
+from django.contrib.auth.mixins import LoginRequiredMixin
 from . import models
 from typing import Dict, Any, List
 from django.utils import timezone
@@ -98,3 +99,22 @@ class StockCompanyDetail(DetailView):
         context["end_date"] = str(end_date)
         context["start_date"] = str(start_date)
         return context
+
+
+class PortFolioList(LoginRequiredMixin,ListView):
+    queryset = models.PortFolio.objects.all()
+    paginate_by = 24
+    template_name: str = "stocks/portfolio_list.html"
+    context_object_name = "portfolios"
+
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user).distinct()
+
+
+class PortFolioDetails(LoginRequiredMixin,DetailView):
+    queryset = models.PortFolio.objects.all()
+    template_name: str = "stocks/portfolio_details.html"
+    context_object_name = "portfolio"
+    
+    def get_queryset(self):
+        return self.queryset.filter(user=self.request.user)

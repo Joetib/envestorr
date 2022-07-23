@@ -1,10 +1,12 @@
 import datetime
+from decimal import Decimal
 from typing import Dict, List, Tuple
 from django.db import models
 from django.urls import reverse
 from django.utils.text import slugify
 import requests
 from django.utils import timezone
+from accounts.models import CustomUser as User
 
 from stocks.utils import StocksService
 # Create your models here.
@@ -29,6 +31,9 @@ class Company(models.Model):
 
     def __str__(self) -> str:
         return self.label
+    @property
+    def current_stock_price(self) -> Decimal:
+        return self.stock_entries.order_by('-date').first().closing_price
 
     def last_thirty_days_stocks(self):
         date = timezone.now() - datetime.timedelta(days=30)
@@ -121,4 +126,53 @@ class StockEntry(models.Model):
 
     def __str__(self) -> str:
         return f"Stock for {self.company.name} on {self.date}"
+
+
+
+class PortFolio(models.Model):
+    user = models.ForeignKey(User, related_name="portfolios", on_delete=models.CASCADE)
+    title = models.CharField(max_length=200, help_text="a label to help distinguish this portfolio")
+    details = models.TextField(blank=True)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
     
+    def __str__(self):
+        return self.title
+    def profit(self):
+        return self.current_value() - self.purchase_value()
+
+    def percentage_change(self) -> Decimal:
+        return (self.profit() * 100) / self.purchase_value()
+
+    def current_value(self):
+        return sum([stock.current_value() for stock in self.stocks.all()])
+
+    def purchase_value(self):
+        return sum([stock.purchase_value() for stock in self.stocks.all()])
+
+    def get_absolute_url(self):
+        return reverse("stocks:portfolio-details", kwargs={'pk': self.pk})
+
+
+    
+class PortFolioStock(models.Model):
+    portfolio = models.ForeignKey(PortFolio, related_name="stocks", on_delete=models.CASCADE)
+    stock = models.ForeignKey(Company, on_delete=models.CASCADE)
+    quantity_purchased = models.PositiveIntegerField(default=1)
+    purchase_price = models.DecimalField(decimal_places=2, max_digits=12)
+    date_created = models.DateTimeField(auto_now_add=True)
+    last_modified = models.DateTimeField(auto_now=True)
+
+    def __str__(self):
+        return f"{self.quantity_purchased} of {self.stock}"
+
+    def current_value(self):
+        return self.stock.current_stock_price * self.quantity_purchased
+    def purchase_value(self):
+        return self.quantity_purchased * self.purchase_price
+
+    def percentage_change(self):
+        return (self.profit() * 100 )/ self.purchase_value()
+    
+    def profit(self):
+        return self.current_value() - self.purchase_value()

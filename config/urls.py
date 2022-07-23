@@ -7,6 +7,7 @@ from django.conf import settings
 urlpatterns = [
     path("unicorn/", include("django_unicorn.urls")),
     path('admin/', admin.site.urls),
+    path('accounts/dashboard/', include('accounts.urls', namespace="accounts")),
     path('accounts/', include('allauth.urls')),
     path('stocks/', include('stocks.urls', namespace="stocks")),
     path('blog/', include('blog.urls', namespace="blog")),
