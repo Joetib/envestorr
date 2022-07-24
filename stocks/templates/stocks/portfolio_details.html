@@ -30,8 +30,18 @@
 <section class="page-content pb-5">
     <div class="bg-white py-5  ">
         <div class="container ">
+            <div class="d-flex justify-content-end">
+                    <div class="p-1">
+
+                        {% unicorn 'edit_portfolio' portfolio=portfolio %}
+                    </div>
+                    <div class="p-1">
+                        {% unicorn 'delete_portfolio' portfolio=portfolio %}
+                    </div>
+
+            </div>
             <div class="row h-100 pb-5">
-                
+
                 <div class="col-sm-8   p-2 p-sm-3 col-xl-9 d-flex flex-column justify-content-between p-">
                     <div class="bg-light px-4 py-3">
                         <h6 class="font-weight-bold pb-3">Description</h6>
@@ -64,7 +74,8 @@
 
                 <div class="col  p-2 p-sm-3 ">
                     {% with portfolio.percentage_change as percentage_change %}
-                    <div class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white h-100 p-3">
+                    <div
+                        class="{% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white h-100 p-3">
                         <h6>Change (%)</h6>
                         <h5 class="font-weight-bold">{{ percentage_change|floatformat:2 }} %</h5>
                     </div>
@@ -86,68 +97,82 @@
 
             <div class="py-5 bg-ligh border px-md-5 mt-5">
                 <div class="container">
-                <div class="d-flex justify-content-between pb-5">
+                    <div class="d-flex justify-content-between pb-5">
 
-                    <h3 class="font-weight-bold pb-4">Stocks</h3>
-                    {% unicorn 'add_portfolio_stock' portfolio=portfolio%}
+                        <h3 class="font-weight-bold pb-4">Stocks</h3>
+                        {% unicorn 'add_portfolio_stock' portfolio=portfolio%}
 
-                </div>
+                    </div>
 
-                {% for stock in portfolio.stocks.all %}
-                {% if not forloop.counter0 == 0 %}
-                <hr>
-                {% endif %}
-                <div class="py-3">
-                    <div class="bg-white  py-3 ">
-                        <h5 class="font-weight-bold px-3 pb-4">{{ stock.stock.name }}({{stock.stock.label}})</h5>
-                        <div class="d-flex flex-row flex-wrap pb-4">
-                            <div class="col p-2 p-sm-3">
+                    {% for stock in portfolio.stocks.all %}
+                    {% if not forloop.counter0 == 0 %}
+                    <hr>
+                    {% endif %}
+                    <div class="py-3">
+                        <div class="bg-white  py-3 ">
+                            <div class="d-flex justify-content-between gap-3">
 
-                                <div class="bg-light h-100 p-3">
-                                    <h6>Quantity</h6>
-                                    <h5 class="font-weight-bold">{{ stock.quantity_purchased}}</h5>
+                                <h5 class="font-weight-bold px-3 pb-4">{{ stock.stock.name }}({{stock.stock.label}})
+                                </h5>
+                                <div class="d-flex">
+                                    <div class="p-1">
+
+                                        {% unicorn 'edit_portfolio_stock' portfoliostock=stock %}
+                                    </div>
+                                    <div class="p-1">
+                                        {% unicorn 'delete_portfolio_stock' portfoliostock=stock %}
+                                    </div>
+
                                 </div>
                             </div>
-                            <div class="col p-2 p-sm-3 ">
+                            <div class="d-flex flex-row flex-wrap pb-4">
+                                <div class="col p-2 p-sm-3">
 
-                                <div class="bg-light h-100 p-3">
-                                    <h6>Purchase Price (GH)</h6>
-                                    <h5 class="font-weight-bold">{{ stock.purchase_value|floatformat:2 }}</h5>
+                                    <div class="bg-light h-100 p-3">
+                                        <h6>Quantity</h6>
+                                        <h5 class="font-weight-bold">{{ stock.quantity_purchased}}</h5>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="col p-2 p-sm-3 ">
-                                <div class="h-100 bg-light p-3">
-                                    <h6>Current Price (GH)</h6>
-                                    <h5 class="font-weight-bold">{{ stock.current_value|floatformat:2 }}</h5>
-                                </div>
-                            </div>
-                            <div class="col p-2 p-sm-3">
-                                {% with stock.percentage_change as percentage_change %}
-                                <div
-                                    class="h-100 {% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
-                                    <h6>Change (%)</h6>
-                                    <h5 class="font-weight-bold">{{ percentage_change|floatformat:2 }} %</h5>
-                                </div>
-                                {% endwith %}
-                            </div>
-                            <div class="col p-2 p-sm-3 ">
-                                {% with stock.profit as profit %}
-                                <div
-                                    class="h-100 {% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+                                <div class="col p-2 p-sm-3 ">
 
-                                    <h6>Profit (GH)</h6>
-                                    <h5 class="font-weight-bold">{{ profit|floatformat:2 }}</h5>
+                                    <div class="bg-light h-100 p-3">
+                                        <h6>Purchase Price (GH)</h6>
+                                        <h5 class="font-weight-bold">{{ stock.purchase_value|floatformat:2 }}</h5>
+                                    </div>
                                 </div>
-                                {% endwith %}
+                                <div class="col p-2 p-sm-3 ">
+                                    <div class="h-100 bg-light p-3">
+                                        <h6>Current Price (GH)</h6>
+                                        <h5 class="font-weight-bold">{{ stock.current_value|floatformat:2 }}</h5>
+                                    </div>
+                                </div>
+                                <div class="col p-2 p-sm-3">
+                                    {% with stock.percentage_change as percentage_change %}
+                                    <div
+                                        class="h-100 {% if percentage_change >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+                                        <h6>Change (%)</h6>
+                                        <h5 class="font-weight-bold">{{ percentage_change|floatformat:2 }} %</h5>
+                                    </div>
+                                    {% endwith %}
+                                </div>
+                                <div class="col p-2 p-sm-3 ">
+                                    {% with stock.profit as profit %}
+                                    <div
+                                        class="h-100 {% if profit >= 0 %}bg-success{% else %}bg-danger{% endif %} text-white p-3">
+
+                                        <h6>Profit (GH)</h6>
+                                        <h5 class="font-weight-bold">{{ profit|floatformat:2 }}</h5>
+                                    </div>
+                                    {% endwith %}
+                                </div>
                             </div>
                         </div>
                     </div>
-                </div>
-                {% empty %}
-                <div class="py-3">
-                    <p class="text-center text-danger">You have not added stocks to this portfolio yet.</p>
-                </div>
-                {% endfor %}
+                    {% empty %}
+                    <div class="py-3">
+                        <p class="text-center text-danger">You have not added stocks to this portfolio yet.</p>
+                    </div>
+                    {% endfor %}
                 </div>
             </div>
 
